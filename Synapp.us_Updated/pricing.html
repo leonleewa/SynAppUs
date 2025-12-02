@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | SynAppUs Bot</title>
+    <meta name="description" content="Choose a plan that suits your needs and start optimizing your Telegram communication today!">
+    <link rel="icon" href="images/favicon.jpg" sizes="32x32">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#24a1de',
+                        secondary: '#1e73be',
+                        cream: '#f8f6f0',
+                        dark: '#0e1621',
+                        accent: '#e34457',
+                    },
+                    fontFamily: {
+                        'open-sans': ['Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
+                        'ibm-condensed': ['IBM Plex Sans Condensed', 'Helvetica', 'Arial', 'sans-serif'],
+                        'ibm': ['IBM Plex Sans', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-delay-100 { animation-delay: 0.1s; }
+        .animate-delay-200 { animation-delay: 0.2s; }
+        .animate-delay-300 { animation-delay: 0.3s; }
+        .animate-delay-400 { animation-delay: 0.4s; }
+        
+        .pricing-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .btn-primary {
+            transition: all 0.3s ease;
+            box-shadow: 6px 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            max-height: 300px;
+        }
+        
+        .check-icon {
+            color: #24a1de;
+        }
+        
+        .unavailable {
+            color: #999;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body class="font-open-sans text-dark bg-cream">
+
+    <!-- Header -->
+    <header class="bg-primary fixed w-full top-0 z-50 shadow-md transition-all duration-300" id="main-header">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex items-center justify-between h-[57px] lg:h-[80px]">
+                <!-- Logo -->
+                <a href="index.html" class="flex-shrink-0">
+                    <img src="images/logo-long.jpg" alt="SynAppUs Bot" class="h-8 lg:h-12 w-auto">
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="pricing.html" class="text-white text-lg font-semibold hover:opacity-80 transition-opacity">Pricing</a>
+                    <a href="contacts.html" class="text-white text-lg font-semibold hover:opacity-80 transition-opacity">Contacts</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white p-2" id="mobile-menu-btn" aria-label="Toggle menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <nav class="mobile-menu md:hidden bg-primary border-t border-white/20" id="mobile-menu">
+                <div class="py-4 space-y-3">
+                    <a href="pricing.html" class="block text-white text-lg font-semibold hover:opacity-80 transition-opacity px-4 py-2">Pricing</a>
+                    <a href="contacts.html" class="block text-white text-lg font-semibold hover:opacity-80 transition-opacity px-4 py-2">Contacts</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-[57px] lg:h-[80px]"></div>
+
+    <!-- Hero Section -->
+    <section class="bg-cream py-12 lg:py-16">
+        <div class="container mx-auto px-4 lg:px-8 text-center">
+            <h2 class="font-ibm-condensed text-3xl lg:text-5xl font-bold text-dark mb-6 animate-fade-in-up">
+                Ready to Transform Your Communication?
+            </h2>
+            <p class="text-lg lg:text-xl text-dark/80 max-w-3xl mx-auto mb-8 animate-fade-in-up animate-delay-100">
+                Join the revolution in Telegram management with SynApp Bot. Choose a plan that suits your needs and start optimizing your communication today!
+            </p>
+            <a href="contacts.html" class="inline-block bg-primary text-white font-bold text-xl py-4 px-10 rounded-full shadow-lg hover:bg-primary/90 transition-all btn-primary animate-fade-in-up animate-delay-200">
+                Subscribe Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Pricing Cards Section -->
+    <section class="py-16 lg:py-24" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-cream/80"></div>
+        <div class="container mx-auto px-4 lg:px-8 relative z-10">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                
+                <!-- Basic Plan -->
+                <div class="pricing-card bg-white rounded-3xl shadow-xl overflow-hidden animate-fade-in-up">
+                    <div class="bg-primary/10 p-6 text-center">
+                        <h3 class="font-ibm-condensed text-2xl font-bold text-dark">Basic</h3>
+                        <p class="text-dark/70 mt-2">Up to 50 groups/channels</p>
+                        <div class="mt-4">
+                            <span class="text-4xl font-bold text-primary">$100</span>
+                            <span class="text-dark/60">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Group & Channel Manager</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>SaaS</span>
+                            </li>
+                            <li class="flex items-center gap-3 unavailable">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Single Sign-On (SSO)</span>
+                            </li>
+                            <li class="flex items-center gap-3 unavailable">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>CRM Integration</span>
+                            </li>
+                            <li class="flex items-center gap-3 unavailable">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Statistics</span>
+                            </li>
+                            <li class="flex items-center gap-3 unavailable">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>AI Insights</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 text-center">
+                            <a href="contacts.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-all">
+                                Subscribe
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Business Plan -->
+                <div class="pricing-card bg-white rounded-3xl shadow-xl overflow-hidden animate-fade-in-up animate-delay-100">
+                    <div class="bg-primary/10 p-6 text-center">
+                        <h3 class="font-ibm-condensed text-2xl font-bold text-dark">Business</h3>
+                        <p class="text-dark/70 mt-2">Up to 200 groups/channels</p>
+                        <div class="mt-4">
+                            <span class="text-4xl font-bold text-primary">$450</span>
+                            <span class="text-dark/60">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Group & Channel Manager</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>SaaS</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Single Sign-On (SSO)</span>
+                            </li>
+                            <li class="flex items-center gap-3 unavailable">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>CRM Integration</span>
+                            </li>
+                            <li class="flex items-center gap-3 unavailable">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Statistics</span>
+                            </li>
+                            <li class="flex items-center gap-3 unavailable">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>AI Insights</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 text-center">
+                            <a href="contacts.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-all">
+                                Subscribe
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Business Pro Plan (Featured) -->
+                <div class="pricing-card bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-primary transform lg:scale-105 animate-fade-in-up animate-delay-200 relative">
+                    <!-- Most Popular Badge -->
+                    <div class="absolute -top-0 -right-0 z-10">
+                        <div class="bg-accent text-white text-xs font-bold px-4 py-1 rounded-bl-xl rounded-tr-2xl shadow-lg">
+                            MOST POPULAR
+                        </div>
+                    </div>
+                    <div class="bg-primary p-6 text-center">
+                        <h3 class="font-ibm-condensed text-2xl font-bold text-white">Business Pro</h3>
+                        <p class="text-white/80 mt-2">Up to 200 groups/channels</p>
+                        <div class="mt-4">
+                            <span class="text-4xl font-bold text-white">$800</span>
+                            <span class="text-white/80">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Group & Channel Manager</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>SaaS</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Single Sign-On (SSO)</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>CRM Integration</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Statistics</span>
+                            </li>
+                            <li class="flex items-center gap-3 unavailable">
+                                <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>AI Insights</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 text-center">
+                            <a href="contacts.html" class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-primary/90 transition-all">
+                                Subscribe
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="pricing-card bg-white rounded-3xl shadow-xl overflow-hidden animate-fade-in-up animate-delay-300">
+                    <div class="bg-dark p-6 text-center">
+                        <h3 class="font-ibm-condensed text-2xl font-bold text-white">Enterprise</h3>
+                        <p class="text-white/70 mt-2">Custom*</p>
+                        <div class="mt-4">
+                            <span class="text-4xl font-bold text-white">Custom</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Group & Channel Manager</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>SaaS/On Premise</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Single Sign-On (SSO)</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>CRM Integration</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>Statistics</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 check-icon flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>AI Insights</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 text-center">
+                            <a href="contacts.html" class="inline-block bg-dark text-white font-bold py-3 px-8 rounded-full hover:bg-dark/90 transition-all">
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Custom Solutions Section -->
+    <section class="bg-cream py-16">
+        <div class="container mx-auto px-4 lg:px-8 text-center">
+            <h2 class="font-ibm-condensed text-2xl lg:text-3xl font-bold text-dark mb-4">
+                * Looking for customized solution?
+            </h2>
+            <p class="text-lg text-dark/80 max-w-2xl mx-auto mb-8">
+                On-premises installation, no limits, personalized functionality, monitoring, custom integrations, etc.
+            </p>
+            <a href="contacts.html" class="inline-block bg-primary text-white font-bold text-xl py-4 px-10 rounded-full shadow-lg hover:bg-primary/90 transition-all btn-primary">
+                Contact Us
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white relative">
+        <!-- Wave Divider -->
+        <div class="absolute top-0 left-0 right-0 overflow-hidden leading-none transform -translate-y-full">
+            <svg class="relative block w-full h-16 lg:h-24" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="#24a1de">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.1,118.92,156.63,69.08,321.39,56.44Z"></path>
+            </svg>
+        </div>
+        
+        <!-- Footer Main Content -->
+        <div class="container mx-auto px-4 lg:px-8 pt-12 pb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                
+                <!-- Logo & Description -->
+                <div class="text-center md:text-left">
+                    <a href="index.html" class="inline-block mb-4">
+                        <img src="images/logo-long.jpg" alt="SynAppUs Bot" class="h-10 w-auto">
+                    </a>
+                    <p class="text-white/80 text-sm leading-relaxed">
+                        Smart Telegram bot for effortless group and channel management. From thousands of clicks to just a few.
+                    </p>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="text-center">
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <nav class="flex flex-col gap-2">
+                        <a href="index.html" class="text-white/80 hover:text-white transition-colors">Home</a>
+                        <a href="pricing.html" class="text-white/80 hover:text-white transition-colors">Pricing</a>
+                        <a href="contacts.html" class="text-white/80 hover:text-white transition-colors">Contacts</a>
+                    </nav>
+                </div>
+                
+                <!-- Social & Contact -->
+                <div class="text-center md:text-right">
+                    <h4 class="font-bold text-lg mb-4">Connect With Us</h4>
+                    <div class="flex items-center justify-center md:justify-end gap-4 mb-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors" aria-label="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors" aria-label="Twitter/X">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors" aria-label="Telegram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        </a>
+                    </div>
+                    <p class="text-white/60 text-sm">
+                        Get in touch: <a href="contacts.html" class="text-white hover:underline">Contact Us</a>
+                    </p>
+                </div>
+                
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="border-t border-white/20 pt-6">
+                <p class="text-white/60 text-sm text-center">
+                    &copy; 2025 SynAppUs Bot. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('main-header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
