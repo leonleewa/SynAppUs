@@ -135,6 +135,246 @@
         .mobile-menu.open {
             max-height: 300px;
         }
+        
+        /* Focus states for accessibility */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #24a1de;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+        
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: none;
+            border-color: #24a1de;
+            box-shadow: 0 0 0 3px rgba(36, 161, 222, 0.2);
+        }
+        
+        /* Image hover zoom effect */
+        .img-zoom {
+            overflow: hidden;
+        }
+        
+        .img-zoom img {
+            transition: transform 0.5s ease;
+        }
+        
+        .img-zoom:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Floating animation for images */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Parallax effect */
+        .parallax-container {
+            perspective: 1000px;
+        }
+        
+        .parallax-image {
+            transition: transform 0.3s ease-out;
+        }
+        
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #24a1de;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .scroll-to-top:hover {
+            background: #1e73be;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Link underline animation */
+        .link-underline {
+            position: relative;
+        }
+        
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .link-underline:hover::after {
+            width: 100%;
+        }
+        
+        /* Card shine effect on hover */
+        .card-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.2),
+                transparent
+            );
+            transition: left 0.5s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .card-shine:hover::before {
+            left: 100%;
+        }
+        
+        /* Pulse animation for CTA */
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+        
+        .btn-pulse {
+            position: relative;
+        }
+        
+        .btn-pulse::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: inherit;
+            animation: pulse-ring 2s ease-out infinite;
+            z-index: -1;
+        }
+        
+        /* Device mockup frame */
+        .device-frame {
+            position: relative;
+            background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+            border-radius: 16px;
+            padding: 12px 12px 30px 12px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0,0,0,0.4),
+                0 0 0 1px rgba(255,255,255,0.1) inset;
+        }
+        
+        .device-frame::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #444;
+            border-radius: 2px;
+        }
+        
+        .device-frame::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 12px;
+            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+            border-radius: 4px;
+        }
+        
+        .device-screen {
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        /* Browser window frame */
+        .browser-frame {
+            position: relative;
+            background: #e8e8e8;
+            border-radius: 12px;
+            padding-top: 32px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0,0,0,0.3),
+                0 0 0 1px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .browser-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 32px;
+            background: linear-gradient(180deg, #f5f5f5 0%, #e0e0e0 100%);
+            border-bottom: 1px solid #ccc;
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .browser-frame::after {
+            content: '● ● ●';
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: transparent;
+            text-shadow: 
+                0 0 0 #ff5f56,
+                18px 0 0 #ffbd2e,
+                36px 0 0 #27ca40;
+        }
+        
+        .browser-content {
+            background: #fff;
+        }
     </style>
 </head>
 <body class="font-open-sans text-dark bg-cream">
@@ -195,7 +435,7 @@
                         From thousands of clicks to just a few — <span class="text-primary">effortless</span> Telegram group management.
                     </p>
                     <div class="text-right">
-                        <a href="pricing.html" class="btn-primary inline-flex items-center gap-3 bg-primary text-white text-xl lg:text-2xl font-bold py-4 px-8 rounded-full hover:bg-primary/90 transition-all group">
+                        <a href="pricing.html" class="btn-primary btn-pulse inline-flex items-center gap-3 bg-primary text-white text-xl lg:text-2xl font-bold py-4 px-8 rounded-full hover:bg-primary/90 transition-all group">
                             Get Started
                             <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -347,8 +587,10 @@
                 
                 <!-- Right Column - Image -->
                 <div class="w-full lg:w-1/2 lg:pt-12 lg:-mt-24">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="images/feature-bot-white.jpg" alt="Group Manager Feature" class="w-full h-auto">
+                    <div class="browser-frame parallax-container">
+                        <div class="browser-content img-zoom">
+                            <img src="images/feature-bot-white.jpg" alt="Group Manager Feature" class="w-full h-auto parallax-image">
+                        </div>
                     </div>
                 </div>
                 
@@ -427,8 +669,10 @@
                 
                 <!-- Left Column - Image -->
                 <div class="w-full lg:w-1/2">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="images/feature-bot-dark.jpg" alt="SSO Feature" class="w-full h-auto">
+                    <div class="device-frame parallax-container">
+                        <div class="device-screen img-zoom">
+                            <img src="images/feature-bot-dark.jpg" alt="SSO Feature" class="w-full h-auto parallax-image">
+                        </div>
                     </div>
                 </div>
                 
@@ -509,8 +753,10 @@
                 
                 <!-- Right Column - Image -->
                 <div class="w-full lg:w-1/2">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="images/feature-crm.jpg" alt="CRM Integration Feature" class="w-full h-auto">
+                    <div class="browser-frame parallax-container">
+                        <div class="browser-content img-zoom">
+                            <img src="images/feature-crm.jpg" alt="CRM Integration Feature" class="w-full h-auto parallax-image">
+                        </div>
                     </div>
                 </div>
                 
@@ -545,9 +791,9 @@
                 <div class="text-center">
                     <h4 class="font-bold text-lg mb-4">Quick Links</h4>
                     <nav class="flex flex-col gap-2">
-                        <a href="index.html" class="text-white/80 hover:text-white transition-colors">Home</a>
-                        <a href="pricing.html" class="text-white/80 hover:text-white transition-colors">Pricing</a>
-                        <a href="contacts.html" class="text-white/80 hover:text-white transition-colors">Contacts</a>
+                        <a href="index.html" class="text-white/80 hover:text-white transition-colors link-underline inline-block">Home</a>
+                        <a href="pricing.html" class="text-white/80 hover:text-white transition-colors link-underline inline-block">Pricing</a>
+                        <a href="contacts.html" class="text-white/80 hover:text-white transition-colors link-underline inline-block">Contacts</a>
                     </nav>
                 </div>
                 
@@ -583,6 +829,13 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -658,6 +911,38 @@
         document.querySelectorAll('.feature-card').forEach(el => {
             el.style.opacity = '0';
             observer.observe(el);
+        });
+        
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Parallax effect on mouse move for images
+        document.querySelectorAll('.parallax-image').forEach(img => {
+            img.parentElement.addEventListener('mousemove', (e) => {
+                const rect = img.parentElement.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                img.style.transform = `perspective(1000px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg) scale(1.02)`;
+            });
+            
+            img.parentElement.addEventListener('mouseleave', () => {
+                img.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
+            });
         });
     </script>
 </body>
