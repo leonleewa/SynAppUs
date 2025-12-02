@@ -437,6 +437,21 @@
         .zoomable {
             cursor: zoom-in;
         }
+        
+        /* Sharper images */
+        .img-sharp {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        
+        /* Ensure images don't blur on transform */
+        .parallax-image {
+            will-change: transform;
+            -webkit-font-smoothing: subpixel-antialiased;
+        }
     </style>
 </head>
 <body class="font-open-sans text-dark bg-cream">
@@ -651,7 +666,7 @@
                 <div class="w-full lg:w-1/2 lg:pt-12 lg:-mt-24">
                     <div class="browser-frame parallax-container">
                         <div class="browser-content img-zoom">
-                            <img src="images/feature-bot-white.jpg" alt="Group Manager Feature" class="w-full h-auto parallax-image zoomable">
+                            <img src="images/feature-bot-white.jpg" alt="Group Manager Feature" class="w-full h-auto parallax-image zoomable img-sharp">
                         </div>
                     </div>
                 </div>
@@ -670,7 +685,7 @@
                 Access everything easily and securely with one login
             </h2>
             
-            <div class="flex flex-col lg:flex-row-reverse items-start gap-8 lg:gap-12 mt-8">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-16 mt-8">
                 
                 <!-- Right Column - Content -->
                 <div class="w-full lg:w-1/2">
@@ -682,41 +697,38 @@
                         <p class="text-dark font-ibm text-base lg:text-lg leading-relaxed mb-4">
                             The <strong>SSO/Identity Management</strong> feature streamlines how you and your team access SynApp and your Telegram resources. Here's how it helps:
                         </p>
-                        <ul class="space-y-4 text-dark font-ibm text-base lg:text-lg leading-relaxed">
+                        <ul class="space-y-3 text-dark font-ibm text-base lg:text-lg leading-relaxed">
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                <span><strong>One Login for Everything</strong>: Use a single account to securely access all SynApp features and tools. No need to remember multiple passwords!</span>
+                                <span><strong>One Login for Everything</strong>: Use a single account to securely access all SynApp features and tools.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                <span><strong>Seamless Access</strong>: Log in once and stay connected to all your Telegram groups and channels without interruptions.</span>
+                                <span><strong>Seamless Access</strong>: Log in once and stay connected to all your Telegram groups and channels.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                <span><strong>Manage User Roles</strong>: Assign roles and permissions to team members, ensuring everyone has the right access.</span>
+                                <span><strong>Manage User Roles</strong>: Assign roles and permissions to team members easily.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                <span><strong>Secure and Reliable</strong>: Protect your data with industry-standard authentication, keeping your information safe.</span>
+                                <span><strong>Secure and Reliable</strong>: Industry-standard authentication keeps your data safe.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                <span><strong>Integration Ready</strong>: Works with popular identity systems, so it fits smoothly into your existing setup.</span>
+                                <span><strong>Integration Ready</strong>: Works with popular identity systems seamlessly.</span>
                             </li>
                         </ul>
-                        <p class="text-dark font-ibm text-base lg:text-lg leading-relaxed mt-4">
-                            With SSO and Identity Management, accessing and managing your Telegram resources is simpler, faster, and more secure.
-                        </p>
                     </div>
                     
                     <div class="text-right mt-6">
@@ -733,7 +745,7 @@
                 <div class="w-full lg:w-1/2">
                     <div class="device-frame parallax-container">
                         <div class="device-screen img-zoom">
-                            <img src="images/feature-bot-dark.jpg" alt="SSO Feature" class="w-full h-auto parallax-image zoomable">
+                            <img src="images/feature-bot-dark.jpg" alt="SSO Feature" class="w-full h-auto parallax-image zoomable img-sharp">
                         </div>
                     </div>
                 </div>
@@ -754,7 +766,7 @@
                 Seamlessly track all customer interactions through your corporate CRM.
             </h2>
             
-            <div class="flex flex-col lg:flex-row items-start gap-8 lg:gap-12 mt-8">
+            <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 mt-8">
                 
                 <!-- Left Column - Content -->
                 <div class="w-full lg:w-1/2">
@@ -764,43 +776,40 @@
                     
                     <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-6 shadow-lg feature-card border border-white/20">
                         <p class="text-white/90 font-ibm text-base lg:text-lg leading-relaxed mb-4">
-                            The <strong class="text-primary">CRM Integration</strong> feature connects SynApp with your corporate Customer Relationship Management (CRM) system (like HubSpot). This ensures that all interactions managed by the bot are captured and organized in your CRM. Key benefits include:
+                            The <strong class="text-primary">CRM Integration</strong> feature connects SynApp with your corporate CRM system (like HubSpot), ensuring all interactions are captured and organized.
                         </p>
-                        <ul class="space-y-4 text-white/90 font-ibm text-base lg:text-lg leading-relaxed">
+                        <ul class="space-y-3 text-white/90 font-ibm text-base lg:text-lg leading-relaxed">
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                <span><strong class="text-white">Track Customer Interactions</strong>: Automatically log all messages, inquiries, and actions processed by the bot into your CRM, ensuring a complete history of customer engagement.</span>
+                                <span><strong class="text-white">Track Interactions</strong>: Automatically log all messages and actions into your CRM.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                <span><strong class="text-white">Seamless Integration</strong>: Works with popular CRM platforms like HubSpot, Salesforce, and others, enabling effortless syncing of data.</span>
+                                <span><strong class="text-white">Seamless Integration</strong>: Works with HubSpot, Salesforce, and other popular platforms.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                <span><strong class="text-white">Centralized Insights</strong>: Gain a unified view of all customer interactions within your CRM, no matter where they originate.</span>
+                                <span><strong class="text-white">Centralized Insights</strong>: Unified view of all customer interactions in one place.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                <span><strong class="text-white">Enhanced Customer Management</strong>: Keep track of customer touchpoints to deliver personalized and efficient service.</span>
+                                <span><strong class="text-white">Enhanced Management</strong>: Track touchpoints for personalized service.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                 </svg>
-                                <span><strong class="text-white">Streamlined Workflow</strong>: Automate data entry, reduce manual effort, and ensure no interactions are missed or lost.</span>
+                                <span><strong class="text-white">Streamlined Workflow</strong>: Automate data entry and reduce manual effort.</span>
                             </li>
                         </ul>
-                        <p class="text-white/90 font-ibm text-base lg:text-lg leading-relaxed mt-4">
-                            With CRM Integration, SynApp empowers your team to better manage and understand customer relationships, boosting productivity and service quality.
-                        </p>
                     </div>
                     
                     <div class="text-right mt-6">
@@ -817,7 +826,7 @@
                 <div class="w-full lg:w-1/2">
                     <div class="browser-frame parallax-container">
                         <div class="browser-content img-zoom">
-                            <img src="images/feature-crm.jpg" alt="CRM Integration Feature" class="w-full h-auto parallax-image zoomable">
+                            <img src="images/feature-crm.jpg" alt="CRM Integration Feature" class="w-full h-auto parallax-image zoomable img-sharp">
                         </div>
                     </div>
                 </div>
