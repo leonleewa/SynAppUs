@@ -375,6 +375,68 @@
         .browser-content {
             background: #fff;
         }
+        
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            cursor: zoom-out;
+            padding: 20px;
+        }
+        
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .lightbox.active img {
+            transform: scale(1);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        /* Zoomable image cursor */
+        .zoomable {
+            cursor: zoom-in;
+        }
     </style>
 </head>
 <body class="font-open-sans text-dark bg-cream">
@@ -589,7 +651,7 @@
                 <div class="w-full lg:w-1/2 lg:pt-12 lg:-mt-24">
                     <div class="browser-frame parallax-container">
                         <div class="browser-content img-zoom">
-                            <img src="images/feature-bot-white.jpg" alt="Group Manager Feature" class="w-full h-auto parallax-image">
+                            <img src="images/feature-bot-white.jpg" alt="Group Manager Feature" class="w-full h-auto parallax-image zoomable">
                         </div>
                     </div>
                 </div>
@@ -671,7 +733,7 @@
                 <div class="w-full lg:w-1/2">
                     <div class="device-frame parallax-container">
                         <div class="device-screen img-zoom">
-                            <img src="images/feature-bot-dark.jpg" alt="SSO Feature" class="w-full h-auto parallax-image">
+                            <img src="images/feature-bot-dark.jpg" alt="SSO Feature" class="w-full h-auto parallax-image zoomable">
                         </div>
                     </div>
                 </div>
@@ -755,7 +817,7 @@
                 <div class="w-full lg:w-1/2">
                     <div class="browser-frame parallax-container">
                         <div class="browser-content img-zoom">
-                            <img src="images/feature-crm.jpg" alt="CRM Integration Feature" class="w-full h-auto parallax-image">
+                            <img src="images/feature-crm.jpg" alt="CRM Integration Feature" class="w-full h-auto parallax-image zoomable">
                         </div>
                     </div>
                 </div>
@@ -829,6 +891,16 @@
             </div>
         </div>
     </footer>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Close lightbox">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <img src="" alt="Enlarged view" id="lightbox-img">
+    </div>
 
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
@@ -943,6 +1015,45 @@
             img.parentElement.addEventListener('mouseleave', () => {
                 img.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
             });
+        });
+        
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        
+        // Open lightbox when clicking zoomable images
+        document.querySelectorAll('.zoomable').forEach(img => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        // Close lightbox function
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Close on close button click
+        lightboxClose.addEventListener('click', closeLightbox);
+        
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
         });
     </script>
 </body>
