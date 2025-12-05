@@ -480,6 +480,13 @@
             transform: translateZ(0);
         }
         
+        /* High resolution image support */
+        .img-2x {
+            image-rendering: auto;
+            image-rendering: crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+        }
+        
         /* Ensure images don't blur on transform */
         .parallax-image {
             will-change: transform;
@@ -536,7 +543,7 @@
     <main id="main-content">
 
     <!-- Main Features Section with Background -->
-    <section class="relative pt-6 lg:pt-10 pb-16 lg:pb-24 section-mask" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
+    <section class="relative py-16 lg:py-20 section-mask" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
         <!-- Background overlay for better text readability -->
         <div class="absolute inset-0 bg-cream/60 z-0"></div>
         <div class="container mx-auto px-4 lg:px-8 relative z-10">
@@ -614,7 +621,7 @@
                                             <img src="images/card-3.jpg" alt="CRM Integration - Connect with HubSpot and other CRM systems" class="w-full h-full object-cover" loading="lazy">
                                         </div>
                                         <div class="p-5">
-                                            <h4 class="font-bold text-xl text-dark mb-2">Seamlessly track all customer interactions through your corporate CRM.</h4>
+                                            <h4 class="font-bold text-xl text-dark mb-2">Connect with your CRM for unified customer management</h4>
                                             <p class="text-dark/70 text-lg mb-4">CRM Integration</p>
                                             <a href="#crm-integration" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-xl py-3 px-6 rounded-full hover:bg-primary/90 transition-all btn-primary group">
                                                 Learn More
@@ -640,7 +647,7 @@
     </section>
 
     <!-- Feature Section 1: Group Manager -->
-    <section id="manage" class="relative py-16 lg:py-24 section-mask-reversed" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
+    <section id="manage" class="relative py-16 lg:py-20 section-mask-reversed" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
         <!-- Background overlay for better text readability -->
         <div class="absolute inset-0 bg-cream/60 z-0"></div>
         <div class="container mx-auto px-4 lg:px-8 relative z-10">
@@ -656,14 +663,14 @@
                 
                 <!-- Left Column - Content -->
                 <div class="w-full lg:w-1/2">
-                    <h3 class="font-ibm-condensed text-2xl lg:text-3xl font-semibold mb-4">
+                    <h3 class="font-ibm-condensed text-2xl lg:text-3xl font-bold mb-4">
                         <span class="bg-cream/95 text-dark px-4 py-2 rounded-lg shadow-md inline-block">
                             Group & Channel Manager
                         </span>
                     </h3>
                     
                     <div class="bg-cream/80 rounded-3xl p-6 shadow-lg feature-card">
-                        <ul class="space-y-4 text-dark font-ibm text-base lg:text-lg leading-relaxed">
+                        <ul class="space-y-4 text-dark font-ibm text-base lg:text-lg" style="line-height: 1.6;">
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -723,7 +730,11 @@
                 <div class="w-full lg:w-1/2 lg:pt-24">
                     <div class="browser-frame parallax-container">
                         <div class="browser-content img-zoom">
-                            <img src="images/feature-bot-white.jpg" alt="Group Manager Feature - Screenshot showing group management dashboard" class="w-full h-auto parallax-image zoomable img-sharp" loading="lazy">
+                            <img src="images/feature-bot-white.jpg" 
+                                 srcset="images/feature-bot-white.jpg 1x, images/feature-bot-white.jpg 2x" 
+                                 alt="Group Manager Feature - Screenshot showing group management dashboard" 
+                                 class="w-full h-auto parallax-image zoomable img-sharp img-2x" 
+                                 loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -733,7 +744,7 @@
     </section>
 
     <!-- Feature Section 2: SSO -->
-    <section id="sso" class="relative py-16 lg:py-24 bg-gradient-to-br from-primary/5 via-cream to-secondary/5">
+    <section id="sso" class="relative py-16 lg:py-20 bg-gradient-to-br from-primary/5 via-cream to-secondary/5">
         <div class="absolute inset-0 opacity-10" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;"></div>
         <div class="container mx-auto px-4 lg:px-8 relative z-10">
             
@@ -746,15 +757,15 @@
                 
                 <!-- Right Column - Content -->
                 <div class="w-full lg:w-1/2">
-                    <h3 class="font-ibm-condensed text-2xl lg:text-3xl font-medium text-dark mb-4">
+                    <h3 class="font-ibm-condensed text-2xl lg:text-3xl font-bold text-dark mb-4">
                         Single Sign-On (SSO) & Identity Management
                     </h3>
                     
                     <div class="bg-cream/80 rounded-3xl p-6 shadow-lg feature-card">
-                        <p class="text-dark font-ibm text-base lg:text-lg leading-relaxed mb-4">
+                        <p class="text-dark font-ibm text-base lg:text-lg mb-4" style="line-height: 1.6;">
                             The <strong>SSO/Identity Management</strong> feature streamlines how you and your team access SynApp and your Telegram resources. Here's how it helps:
                         </p>
-                        <ul class="space-y-3 text-dark font-ibm text-base lg:text-lg leading-relaxed">
+                        <ul class="space-y-3 text-dark font-ibm text-base lg:text-lg" style="line-height: 1.6;">
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -802,7 +813,11 @@
                 <div class="w-full lg:w-1/2 lg:-mt-16">
                     <div class="device-frame parallax-container">
                         <div class="device-screen img-zoom">
-                            <img src="images/feature-bot-dark.jpg" alt="SSO Feature - Screenshot showing single sign-on login interface" class="w-full h-auto parallax-image zoomable img-sharp" loading="lazy">
+                            <img src="images/feature-bot-dark.jpg" 
+                                 srcset="images/feature-bot-dark.jpg 1x, images/feature-bot-dark.jpg 2x" 
+                                 alt="SSO Feature - Screenshot showing single sign-on login interface" 
+                                 class="w-full h-auto parallax-image zoomable img-sharp img-2x" 
+                                 loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -812,7 +827,7 @@
     </section>
 
     <!-- Feature Section 3: CRM Integration -->
-    <section id="crm-integration" class="relative py-16 lg:py-24 bg-gradient-to-br from-dark via-[#1a2634] to-dark text-white overflow-hidden">
+    <section id="crm-integration" class="relative py-16 lg:py-20 bg-gradient-to-br from-dark via-[#1a2634] to-dark text-white overflow-hidden">
         <div class="absolute inset-0 opacity-10" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;"></div>
         <div class="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
         <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
@@ -827,15 +842,15 @@
                 
                 <!-- Left Column - Content -->
                 <div class="w-full lg:w-1/2">
-                    <h3 class="font-ibm-condensed text-2xl lg:text-3xl font-medium text-white/90 mb-4">
+                    <h3 class="font-ibm-condensed text-2xl lg:text-3xl font-bold text-white mb-4">
                         CRM Integration
                     </h3>
                     
                     <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-6 shadow-lg feature-card border border-white/20">
-                        <p class="text-white/90 font-ibm text-base lg:text-lg leading-relaxed mb-4">
+                        <p class="text-white/90 font-ibm text-base lg:text-lg mb-4" style="line-height: 1.6;">
                             The <strong class="text-primary">CRM Integration</strong> feature connects SynApp with your corporate CRM system (like HubSpot), ensuring all interactions are captured and organized.
                         </p>
-                        <ul class="space-y-3 text-white/90 font-ibm text-base lg:text-lg leading-relaxed">
+                        <ul class="space-y-3 text-white/90 font-ibm text-base lg:text-lg" style="line-height: 1.6;">
                             <li class="flex items-start gap-3">
                                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -883,7 +898,11 @@
                 <div class="w-full lg:w-1/2">
                     <div class="browser-frame parallax-container">
                         <div class="browser-content img-zoom">
-                            <img src="images/feature-crm.jpg" alt="CRM Integration Feature - Screenshot showing CRM sync with Telegram data" class="w-full h-auto parallax-image zoomable img-sharp" loading="lazy">
+                            <img src="images/feature-crm.jpg" 
+                                 srcset="images/feature-crm.jpg 1x, images/feature-crm.jpg 2x" 
+                                 alt="CRM Integration Feature - Screenshot showing CRM sync with Telegram data" 
+                                 class="w-full h-auto parallax-image zoomable img-sharp img-2x" 
+                                 loading="lazy">
                         </div>
                     </div>
                 </div>
