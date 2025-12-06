@@ -437,13 +437,13 @@
                 
                 <!-- Contact Info -->
                 <div class="text-center md:text-right">
-                    <a href="#contact-form" class="inline-block">
+                    <a href="contacts.html#contact-form" class="inline-block">
                         <h4 class="font-bold text-lg mb-4 text-white hover:text-white/90 transition-colors cursor-pointer">Get In Touch</h4>
                     </a>
                     <p class="text-white/80 text-sm leading-relaxed mb-4">
                         Ready to streamline your Telegram management? We're here to help.
                     </p>
-                    <a href="#contact-form" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-5 rounded-full transition-colors">
+                    <a href="contacts.html#contact-form" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-5 rounded-full transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
@@ -662,6 +662,26 @@
             planSelect.addEventListener('change', (e) => {
                 updateSubjectFromPlan(e.target.value);
             });
+        }
+        
+        // Handle "Get In Touch" link - scroll to form and focus name field
+        if (window.location.hash === '#contact-form') {
+            setTimeout(() => {
+                const nameField = document.getElementById('name');
+                const contactFormElement = document.getElementById('contact-form');
+                
+                if (contactFormElement) {
+                    // Scroll to form with smooth behavior
+                    contactFormElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                // Focus on name field after scroll
+                if (nameField) {
+                    setTimeout(() => {
+                        nameField.focus();
+                    }, 500);
+                }
+            }, 100);
         }
         
         // Scroll to top button
