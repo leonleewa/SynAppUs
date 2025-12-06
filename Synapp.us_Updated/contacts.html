@@ -7,6 +7,14 @@
     <meta name="description" content="Get in touch with SynAppUs Bot. Fill out the contact form and our specialist will guide you through the next steps.">
     <link rel="icon" href="images/favicon.jpg" sizes="32x32">
     
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://synapp.us/contacts.html">
+    <meta property="og:title" content="Contact Us | SynAppUs Bot">
+    <meta property="og:description" content="Get in touch with SynAppUs Bot. Fill out the contact form and our specialist will guide you through the next steps.">
+    <meta property="og:image" content="https://synapp.us/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -57,11 +65,35 @@
         
         .btn-primary {
             transition: all 0.3s ease;
-            box-shadow: 6px 6px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 14px 0 rgba(0,0,0,0.2);
         }
         
         .btn-primary:hover {
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(0,0,0,0.25);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Form error styles */
+        .form-error {
+            border-color: #e34457 !important;
+            box-shadow: 0 0 0 3px rgba(227, 68, 87, 0.2) !important;
+        }
+        
+        .error-message {
+            color: #e34457;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .error-message.visible {
+            display: block;
         }
         
         html {
@@ -78,6 +110,27 @@
             max-height: 300px;
         }
         
+        /* Active navigation link */
+        .nav-link-active {
+            position: relative;
+        }
+        
+        .nav-link-active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+        }
+        
+        .mobile-nav-active {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
         .form-input {
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
@@ -86,9 +139,47 @@
             border-color: #24a1de;
             box-shadow: 0 0 0 3px rgba(36, 161, 222, 0.2);
         }
+        
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #24a1de;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: none;
+        }
+        
+        .scroll-to-top:hover {
+            background: #1e73be;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body class="font-open-sans text-dark bg-cream">
+
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">
+        Skip to main content
+    </a>
 
     <!-- Header -->
     <header class="bg-primary fixed w-full top-0 z-50 shadow-md transition-all duration-300" id="main-header">
@@ -101,8 +192,9 @@
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-white text-lg font-semibold hover:opacity-80 transition-opacity">Home</a>
                     <a href="pricing.html" class="text-white text-lg font-semibold hover:opacity-80 transition-opacity">Pricing</a>
-                    <a href="contacts.html" class="text-white text-lg font-semibold hover:opacity-80 transition-opacity">Contacts</a>
+                    <a href="contacts.html" class="text-white text-lg font-semibold hover:opacity-80 transition-opacity nav-link-active">Contacts</a>
                 </nav>
                 
                 <!-- Mobile Menu Button -->
@@ -116,8 +208,9 @@
             <!-- Mobile Menu -->
             <nav class="mobile-menu md:hidden bg-primary border-t border-white/20" id="mobile-menu">
                 <div class="py-4 space-y-3">
+                    <a href="index.html" class="block text-white text-lg font-semibold hover:opacity-80 transition-opacity px-4 py-2">Home</a>
                     <a href="pricing.html" class="block text-white text-lg font-semibold hover:opacity-80 transition-opacity px-4 py-2">Pricing</a>
-                    <a href="contacts.html" class="block text-white text-lg font-semibold hover:opacity-80 transition-opacity px-4 py-2">Contacts</a>
+                    <a href="contacts.html" class="block text-white text-lg font-semibold hover:opacity-80 transition-opacity px-4 py-2 mobile-nav-active">Contacts</a>
                 </div>
             </nav>
         </div>
@@ -125,6 +218,9 @@
 
     <!-- Spacer for fixed header -->
     <div class="h-[57px] lg:h-[80px]"></div>
+
+    <!-- Main Content -->
+    <main id="main-content">
 
     <!-- Contact Section -->
     <section class="py-16 lg:py-24" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center; min-height: calc(100vh - 57px);">
@@ -156,43 +252,74 @@
                 </div>
                 
                 <!-- Contact Form -->
-                <div class="bg-white rounded-3xl p-8 lg:p-12 shadow-xl animate-fade-in-up animate-delay-100">
-                    <form id="contact-form" class="space-y-6">
+                <div class="bg-white rounded-2xl p-8 lg:p-12 shadow-xl animate-fade-in-up animate-delay-100">
+                    <form id="contact-form" class="space-y-6" novalidate>
                         
-                        <div>
-                            <label for="name" class="block text-dark font-semibold mb-2">Your name <span class="text-accent">*</span></label>
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
-                                required
-                                class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
-                                placeholder="John Doe"
-                            >
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-dark font-semibold mb-2">Your name <span class="text-accent">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    required
+                                    minlength="2"
+                                    class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
+                                    placeholder="John Doe"
+                                    aria-describedby="name-error"
+                                >
+                                <p id="name-error" class="error-message" role="alert">Please enter your name (at least 2 characters)</p>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-dark font-semibold mb-2">Your email <span class="text-accent">*</span></label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    required
+                                    class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
+                                    placeholder="john@example.com"
+                                    aria-describedby="email-error"
+                                >
+                                <p id="email-error" class="error-message" role="alert">Please enter a valid email address</p>
+                            </div>
                         </div>
                         
-                        <div>
-                            <label for="email" class="block text-dark font-semibold mb-2">Your email <span class="text-accent">*</span></label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                required
-                                class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
-                                placeholder="john@example.com"
-                            >
-                        </div>
-                        
-                        <div>
-                            <label for="phone" class="block text-dark font-semibold mb-2">Your phone number <span class="text-accent">*</span></label>
-                            <input 
-                                type="tel" 
-                                id="phone" 
-                                name="phone" 
-                                required
-                                class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
-                                placeholder="+1 (555) 123-4567"
-                            >
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="phone" class="block text-dark font-semibold mb-2">Your phone number <span class="text-accent">*</span></label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone" 
+                                    required
+                                    class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
+                                    placeholder="+1 (555) 123-4567"
+                                    aria-describedby="phone-error"
+                                >
+                                <p id="phone-error" class="error-message" role="alert">Please enter your phone number</p>
+                            </div>
+                            
+                            <div>
+                                <label for="plan" class="block text-dark font-semibold mb-2">Interested Plan <span class="text-accent">*</span></label>
+                                <select 
+                                    id="plan" 
+                                    name="plan" 
+                                    required
+                                    class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none bg-white appearance-none cursor-pointer"
+                                    aria-describedby="plan-error"
+                                    style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23333%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;"
+                                >
+                                    <option value="">Select a plan...</option>
+                                    <option value="basic">Basic - $100/month (Up to 50 groups)</option>
+                                    <option value="business">Business - $450/month (Up to 200 groups)</option>
+                                    <option value="business-pro">Business Pro - $800/month (Up to 200 groups + CRM)</option>
+                                    <option value="enterprise">Enterprise - Custom pricing</option>
+                                    <option value="not-sure">Not sure yet - Need guidance</option>
+                                </select>
+                                <p id="plan-error" class="error-message" role="alert">Please select a plan</p>
+                            </div>
                         </div>
                         
                         <div>
@@ -202,9 +329,12 @@
                                 id="subject" 
                                 name="subject" 
                                 required
+                                minlength="5"
                                 class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
                                 placeholder="e.g., Business Pro Plan Inquiry"
+                                aria-describedby="subject-error"
                             >
+                            <p id="subject-error" class="error-message" role="alert">Please enter a subject (at least 5 characters)</p>
                         </div>
                         
                         <div>
@@ -212,7 +342,7 @@
                             <textarea 
                                 id="message" 
                                 name="message" 
-                                rows="5"
+                                rows="4"
                                 class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none resize-y"
                                 placeholder="Tell us about your needs, questions, or the best time to reach you..."
                             ></textarea>
@@ -221,23 +351,37 @@
                         <div class="text-center pt-4">
                             <button 
                                 type="submit" 
-                                class="btn-primary inline-block bg-primary text-white font-bold text-xl py-4 px-12 rounded-full hover:bg-primary/90 transition-all"
+                                id="submit-btn"
+                                class="btn-primary inline-flex items-center justify-center gap-2 bg-primary text-white font-bold text-xl py-4 px-12 rounded-full hover:bg-primary/90 transition-all min-w-[200px]"
                             >
-                                Submit
+                                <span id="btn-text">Submit</span>
+                                <svg id="btn-spinner" class="hidden animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
                             </button>
                         </div>
                         
                     </form>
                     
                     <!-- Success Message (hidden by default) -->
-                    <div id="success-message" class="hidden text-center py-8">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div id="success-message" class="hidden text-center py-12">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                         </div>
-                        <h3 class="text-2xl font-bold text-dark mb-2">Thank you!</h3>
-                        <p class="text-dark/70">Your message has been sent. We'll get back to you soon.</p>
+                        <h3 class="text-2xl font-bold text-dark mb-3">Thank you for reaching out!</h3>
+                        <p class="text-dark/70 text-lg mb-6 max-w-md mx-auto">Your message has been sent successfully. Our specialist will contact you within 24 hours.</p>
+                        <button 
+                            id="send-another-btn"
+                            class="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Send another message
+                        </button>
                     </div>
                 </div>
                 
@@ -245,6 +389,8 @@
             
         </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer class="bg-primary text-white relative">
@@ -279,26 +425,20 @@
                     </nav>
                 </div>
                 
-                <!-- Social & Contact -->
+                <!-- Contact Info -->
                 <div class="text-center md:text-right">
-                    <h4 class="font-bold text-lg mb-4">Connect With Us</h4>
-                    <div class="flex items-center justify-center md:justify-end gap-4 mb-4">
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors" aria-label="Facebook">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors" aria-label="Twitter/X">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors" aria-label="Instagram">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors" aria-label="Telegram">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                        </a>
-                    </div>
-                    <p class="text-white/60 text-sm">
-                        Get in touch: <a href="contacts.html" class="text-white hover:underline">Contact Us</a>
+                    <a href="#contact-form" class="inline-block">
+                        <h4 class="font-bold text-lg mb-4 text-white hover:text-white/90 transition-colors cursor-pointer">Get In Touch</h4>
+                    </a>
+                    <p class="text-white/80 text-sm leading-relaxed mb-4">
+                        Ready to streamline your Telegram management? We're here to help.
                     </p>
+                    <a href="#contact-form" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-5 rounded-full transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Contact Us
+                    </a>
                 </div>
                 
             </div>
@@ -311,6 +451,13 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
 
     <script>
         // Mobile menu toggle
@@ -332,25 +479,135 @@
             }
         });
         
-        // Form submission handling (demo)
+        // Form validation and submission
         const contactForm = document.getElementById('contact-form');
         const successMessage = document.getElementById('success-message');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+        const sendAnotherBtn = document.getElementById('send-another-btn');
         
-        contactForm.addEventListener('submit', (e) => {
+        // Validation rules
+        const validators = {
+            name: (value) => value.trim().length >= 2,
+            email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+            phone: (value) => value.trim().length >= 7,
+            plan: (value) => value !== '',
+            subject: (value) => value.trim().length >= 5
+        };
+        
+        // Validate single field
+        function validateField(field) {
+            const fieldName = field.id;
+            const errorEl = document.getElementById(`${fieldName}-error`);
+            
+            if (!validators[fieldName]) return true;
+            
+            const isValid = validators[fieldName](field.value);
+            
+            if (!isValid) {
+                field.classList.add('form-error');
+                if (errorEl) errorEl.classList.add('visible');
+            } else {
+                field.classList.remove('form-error');
+                if (errorEl) errorEl.classList.remove('visible');
+            }
+            
+            return isValid;
+        }
+        
+        // Add real-time validation on blur
+        ['name', 'email', 'phone', 'plan', 'subject'].forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('blur', () => validateField(field));
+                field.addEventListener('input', () => {
+                    if (field.classList.contains('form-error')) {
+                        validateField(field);
+                    }
+                });
+            }
+        });
+        
+        // Form submission
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // In production, you would send the form data to a server here
-            // For demo, we just show the success message
+            // Validate all fields
+            const fields = ['name', 'email', 'phone', 'plan', 'subject'];
+            let isFormValid = true;
+            let firstInvalidField = null;
             
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field && !validateField(field)) {
+                    isFormValid = false;
+                    if (!firstInvalidField) firstInvalidField = field;
+                }
+            });
+            
+            if (!isFormValid) {
+                firstInvalidField?.focus();
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.textContent = 'Sending...';
+            btnSpinner.classList.remove('hidden');
+            
+            // Simulate API call (replace with actual form submission)
+            // For production, use: await fetch('/api/contact', { method: 'POST', body: new FormData(contactForm) });
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Show success message
             contactForm.style.display = 'none';
             successMessage.classList.remove('hidden');
             
-            // Optional: Reset form after a delay
-            setTimeout(() => {
-                contactForm.reset();
-                contactForm.style.display = 'block';
-                successMessage.classList.add('hidden');
-            }, 5000);
+            // Reset button state
+            submitBtn.disabled = false;
+            btnText.textContent = 'Submit';
+            btnSpinner.classList.add('hidden');
+        });
+        
+        // Send another message button
+        sendAnotherBtn.addEventListener('click', () => {
+            contactForm.reset();
+            // Clear any error states
+            document.querySelectorAll('.form-error').forEach(el => el.classList.remove('form-error'));
+            document.querySelectorAll('.error-message').forEach(el => el.classList.remove('visible'));
+            
+            contactForm.style.display = 'block';
+            successMessage.classList.add('hidden');
+            document.getElementById('name').focus();
+        });
+        
+        // Handle plan parameter from URL (e.g., contacts.html?plan=business-pro)
+        const urlParams = new URLSearchParams(window.location.search);
+        const planParam = urlParams.get('plan');
+        if (planParam) {
+            const planSelect = document.getElementById('plan');
+            if (planSelect) {
+                planSelect.value = planParam;
+            }
+        }
+        
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
