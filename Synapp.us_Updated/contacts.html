@@ -229,7 +229,7 @@
             <div class="max-w-4xl mx-auto">
                 
                 <!-- Introduction Text -->
-                <div class="bg-cream/90 rounded-3xl p-8 lg:p-12 shadow-xl mb-12 animate-fade-in-up">
+                <div class="bg-cream/90 rounded-3xl p-8 lg:p-12 shadow-xl mb-8 animate-fade-in-up">
                     <p class="text-lg lg:text-xl text-dark leading-relaxed mb-4">
                         To get started, fill out your contact details below and let us know:
                     </p>
@@ -630,7 +630,38 @@
             const planSelect = document.getElementById('plan');
             if (planSelect) {
                 planSelect.value = planParam;
+                // Auto-populate subject based on selected plan
+                updateSubjectFromPlan(planParam);
             }
+        }
+        
+        // Map plan values to subject line templates
+        const planSubjects = {
+            'basic': 'Basic Plan Inquiry - Up to 50 Groups',
+            'business': 'Business Plan Inquiry - Up to 200 Groups',
+            'business-pro': 'Business Pro Plan Inquiry - CRM Integration',
+            'enterprise': 'Enterprise Plan Inquiry - Custom Solution',
+            'not-sure': 'Plan Consultation Request'
+        };
+        
+        // Update subject field based on plan selection
+        function updateSubjectFromPlan(planValue) {
+            const subjectField = document.getElementById('subject');
+            if (subjectField && planSubjects[planValue]) {
+                subjectField.value = planSubjects[planValue];
+                // Trigger validation if field was previously in error state
+                if (subjectField.classList.contains('form-error')) {
+                    validateField(subjectField);
+                }
+            }
+        }
+        
+        // Listen for plan changes and update subject
+        const planSelect = document.getElementById('plan');
+        if (planSelect) {
+            planSelect.addEventListener('change', (e) => {
+                updateSubjectFromPlan(e.target.value);
+            });
         }
         
         // Scroll to top button
