@@ -671,8 +671,20 @@
                 const contactFormElement = document.getElementById('contact-form');
                 
                 if (contactFormElement) {
-                    // Scroll to form with smooth behavior
-                    contactFormElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Get header height to offset scroll position
+                    const header = document.getElementById('main-header');
+                    const headerHeight = header ? header.offsetHeight : 80;
+                    const offset = headerHeight + 20; // Add 20px extra padding
+                    
+                    // Calculate target scroll position
+                    const elementPosition = contactFormElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+                    
+                    // Scroll to calculated position
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
                 }
                 
                 // Focus on name field after scroll
