@@ -1,0 +1,49 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Documentation and development files
+*.md
+!README-DOCKER.md
+AGENTS.md
+
+# Development directories
+AllInfo/
+node_modules/
+.vscode/
+.idea/
+
+# Backup files
+*.backup
+*.bak
+*.tmp
+*.swp
+*~
+
+# Screenshots and analysis images
+*.png
+*.jpg
+!Synapp.us_Updated/images/*.jpg
+!Synapp.us_Updated/images/*.png
+
+# Build artifacts
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+*.sublime-project
+*.sublime-workspace
+
+# OpenCode config
+opencode.jsonc
+
+# Docker files (no need to include in image)
+Dockerfile
+docker-compose.yml
+.dockerignore

@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  synappus-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: synappus-website
+    image: synappus-bot:latest
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    labels:
+      - "com.synappus.description=SynAppUs Bot Website"
+      - "com.synappus.version=1.0"
+    networks:
+      - synappus-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  synappus-network:
+    driver: bridge
