@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#24a1de">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Contacts | SynAppUs Bot</title>
     <meta name="description" content="Get in touch with SynAppUs Bot. Fill out the contact form and our specialist will guide you through the next steps.">
     <link rel="icon" href="images/favicon.jpg" sizes="32x32">
@@ -103,11 +106,33 @@
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            opacity: 0;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
         }
         
         .mobile-menu.open {
             max-height: 300px;
+            opacity: 1;
+        }
+        
+        /* Animated hamburger menu */
+        .hamburger-line-1,
+        .hamburger-line-2,
+        .hamburger-line-3 {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        #mobile-menu-btn[aria-expanded="true"] .hamburger-line-1 {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        #mobile-menu-btn[aria-expanded="true"] .hamburger-line-2 {
+            opacity: 0;
+        }
+        
+        #mobile-menu-btn[aria-expanded="true"] .hamburger-line-3 {
+            transform: rotate(-45deg) translate(5px, -5px);
         }
         
         /* Active navigation link */
@@ -140,13 +165,32 @@
             box-shadow: 0 0 0 3px rgba(36, 161, 222, 0.2);
         }
         
+        /* Mobile form optimization */
+        @media (max-width: 640px) {
+            .form-input {
+                font-size: 16px !important; /* Prevents iOS zoom on focus */
+                min-height: 44px;
+            }
+            
+            .form-input:focus {
+                border-width: 3px;
+                border-color: #24a1de;
+            }
+            
+            /* Larger dropdown arrow on mobile */
+            select.form-input {
+                background-size: 1.25em;
+                padding-right: 2.5rem;
+            }
+        }
+        
         /* Scroll to top button */
         .scroll-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
+            bottom: calc(20px + env(safe-area-inset-bottom));
+            right: calc(20px + env(safe-area-inset-right));
+            width: 56px;
+            height: 56px;
             background: #24a1de;
             color: white;
             border-radius: 50%;
@@ -158,8 +202,15 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             border: none;
+        }
+        
+        @media (max-width: 640px) {
+            .scroll-to-top {
+                bottom: calc(16px + env(safe-area-inset-bottom));
+                right: calc(16px + env(safe-area-inset-right));
+            }
         }
         
         .scroll-to-top:hover {
@@ -172,6 +223,31 @@
             opacity: 1;
             visibility: visible;
         }
+        
+        /* Mobile typography */
+        @media (max-width: 640px) {
+            h1, h2, h3 {
+                line-height: 1.3;
+            }
+            
+            .font-ibm-condensed {
+                letter-spacing: -0.01em;
+            }
+            
+            p, li {
+                line-height: 1.6;
+            }
+        }
+        
+        @media (min-width: 641px) {
+            h1, h2, h3 {
+                line-height: 1.2;
+            }
+            
+            p, li {
+                line-height: 1.7;
+            }
+        }
     </style>
 </head>
 <body class="font-open-sans text-dark bg-cream">
@@ -183,7 +259,7 @@
 
     <!-- Header -->
     <header class="bg-primary fixed w-full top-0 z-50 shadow-md transition-all duration-300" id="main-header">
-        <div class="container mx-auto px-4 lg:px-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-[57px] lg:h-[80px]">
                 <!-- Logo -->
                 <a href="index.html" class="flex-shrink-0">
@@ -198,9 +274,11 @@
                 </nav>
                 
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden text-white p-2" id="mobile-menu-btn" aria-label="Toggle menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <button class="md:hidden text-white p-2" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+                    <svg class="w-6 h-6 hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path class="hamburger-line-1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16"></path>
+                        <path class="hamburger-line-2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16"></path>
+                        <path class="hamburger-line-3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 18h16"></path>
                     </svg>
                 </button>
             </div>
@@ -223,17 +301,17 @@
     <main id="main-content">
 
     <!-- Contact Section -->
-    <section class="py-16 lg:py-24" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center; min-height: calc(100vh - 57px);">
-        <div class="container mx-auto px-4 lg:px-8">
+    <section class="py-8 sm:py-12 md:py-16 lg:py-24" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center; min-height: calc(100vh - 57px);">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             
             <div class="max-w-4xl mx-auto">
                 
                 <!-- Introduction Text -->
-                <div class="bg-cream/90 rounded-3xl p-8 lg:p-12 shadow-xl mb-8 animate-fade-in-up">
-                    <p class="text-lg lg:text-xl text-dark leading-relaxed mb-4">
+                <div class="bg-cream/90 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 shadow-xl mb-6 sm:mb-8 animate-fade-in-up">
+                    <p class="text-base sm:text-lg md:text-xl text-dark leading-relaxed mb-3 sm:mb-4">
                         To get started, fill out your contact details below and let us know:
                     </p>
-                    <ul class="text-lg text-dark space-y-2 mb-6 ml-6">
+                    <ul class="text-base sm:text-lg text-dark space-y-2 mb-4 sm:mb-6 ml-4 sm:ml-6">
                         <li class="flex items-start gap-2">
                             <span class="text-primary font-bold">-</span>
                             <span>The <strong>plan</strong> you've chosen.</span>
@@ -243,10 +321,10 @@
                             <span>The <strong>best time</strong> for us to reach you.</span>
                         </li>
                     </ul>
-                    <p class="text-lg text-dark leading-relaxed mb-4">
+                    <p class="text-base sm:text-lg md:text-xl text-dark leading-relaxed mb-3 sm:mb-4">
                         Our specialist will get in touch to guide you through the next steps and answer any questions you may have.
                     </p>
-                    <p class="text-lg text-dark leading-relaxed font-medium">
+                    <p class="text-base sm:text-lg md:text-xl text-dark leading-relaxed font-medium">
                         We look forward to helping you streamline your Telegram management experience!
                     </p>
                 </div>
@@ -260,7 +338,7 @@
                     4. Configure email notifications in Formspree dashboard
                     Alternative: Use EmailJS, Web3Forms, or your own backend API
                 -->
-                <div class="bg-white rounded-2xl p-8 lg:p-12 shadow-xl animate-fade-in-up animate-delay-100">
+                <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-12 shadow-xl animate-fade-in-up animate-delay-100">
                     <form id="contact-form" class="space-y-6" novalidate action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -272,7 +350,7 @@
                                     name="name" 
                                     required
                                     minlength="2"
-                                    class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
+                                    class="form-input w-full px-3 sm:px-4 py-3 sm:py-3.5 text-base border-2 border-gray-200 rounded-xl outline-none"
                                     placeholder="John Doe"
                                     aria-describedby="name-error"
                                 >
@@ -286,7 +364,7 @@
                                     id="email" 
                                     name="email" 
                                     required
-                                    class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
+                                    class="form-input w-full px-3 sm:px-4 py-3 sm:py-3.5 text-base border-2 border-gray-200 rounded-xl outline-none"
                                     placeholder="john@example.com"
                                     aria-describedby="email-error"
                                 >
@@ -303,7 +381,7 @@
                                     name="phone" 
                                     required
                                     pattern="[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,4}[-\s\.]?[0-9]{1,9}"
-                                    class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
+                                    class="form-input w-full px-3 sm:px-4 py-3 sm:py-3.5 text-base border-2 border-gray-200 rounded-xl outline-none"
                                     placeholder="+1 (555) 123-4567"
                                     aria-describedby="phone-error"
                                     title="Please enter a valid phone number (e.g., +1 555-123-4567 or (555) 123-4567)"
@@ -317,7 +395,7 @@
                                     id="plan" 
                                     name="plan" 
                                     required
-                                    class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none bg-white appearance-none cursor-pointer"
+                                    class="form-input w-full px-3 sm:px-4 py-3 sm:py-3.5 text-base border-2 border-gray-200 rounded-xl outline-none bg-white appearance-none cursor-pointer"
                                     aria-describedby="plan-error"
                                     style="background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23333%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3e%3cpolyline points=%276 9 12 15 18 9%27%3e%3c/polyline%3e%3c/svg%3e'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;"
                                 >
@@ -340,7 +418,7 @@
                                 name="subject" 
                                 required
                                 minlength="5"
-                                class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none"
+                                class="form-input w-full px-3 sm:px-4 py-3 sm:py-3.5 text-base border-2 border-gray-200 rounded-xl outline-none"
                                 placeholder="e.g., Business Pro Plan Inquiry"
                                 aria-describedby="subject-error"
                             >
@@ -353,7 +431,7 @@
                                 id="message" 
                                 name="message" 
                                 rows="4"
-                                class="form-input w-full px-4 py-3 border-2 border-gray-200 rounded-xl outline-none resize-y"
+                                class="form-input w-full px-3 sm:px-4 py-3 sm:py-3.5 text-base border-2 border-gray-200 rounded-xl outline-none resize-y"
                                 placeholder="Tell us about your needs, questions, or the best time to reach you..."
                             ></textarea>
                         </div>
@@ -362,7 +440,7 @@
                             <button 
                                 type="submit" 
                                 id="submit-btn"
-                                class="btn-primary inline-flex items-center justify-center gap-2 bg-primary text-white font-bold text-xl py-4 px-12 rounded-full hover:bg-primary/90 transition-all min-w-[200px]"
+                                class="btn-primary inline-flex items-center justify-center gap-2 bg-primary text-white font-bold text-base sm:text-lg md:text-xl py-3 sm:py-4 px-10 sm:px-12 rounded-full hover:bg-primary/90 transition-all min-w-[200px]"
                             >
                                 <span id="btn-text">Submit</span>
                                 <svg id="btn-spinner" class="hidden animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
@@ -412,7 +490,7 @@
         </div>
         
         <!-- Footer Main Content -->
-        <div class="container mx-auto px-4 lg:px-8 pt-12 pb-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 
                 <!-- Logo & Description -->
@@ -428,10 +506,10 @@
                 <!-- Navigation -->
                 <div class="text-center">
                     <h4 class="font-bold text-lg mb-4">Quick Links</h4>
-                    <nav class="flex flex-col gap-2">
-                        <a href="index.html" class="text-white/80 hover:text-white transition-colors">Home</a>
-                        <a href="pricing.html" class="text-white/80 hover:text-white transition-colors">Pricing</a>
-                        <a href="contacts.html" class="text-white/80 hover:text-white transition-colors">Contacts</a>
+                    <nav class="flex flex-col gap-3 sm:gap-2">
+                        <a href="index.html" class="text-white/80 hover:text-white transition-colors text-base sm:text-sm py-2 sm:py-0">Home</a>
+                        <a href="pricing.html" class="text-white/80 hover:text-white transition-colors text-base sm:text-sm py-2 sm:py-0">Pricing</a>
+                        <a href="contacts.html" class="text-white/80 hover:text-white transition-colors text-base sm:text-sm py-2 sm:py-0">Contacts</a>
                     </nav>
                 </div>
                 
@@ -443,7 +521,7 @@
                     <p class="text-white/80 text-sm leading-relaxed mb-4">
                         Ready to streamline your Telegram management? We're here to help.
                     </p>
-                    <a href="contacts.html#contact-form" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-5 rounded-full transition-colors">
+                    <a href="contacts.html#contact-form" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-3 sm:py-2 px-6 sm:px-5 text-base sm:text-sm rounded-full transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
@@ -475,7 +553,8 @@
         const mobileMenu = document.getElementById('mobile-menu');
         
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
+            const isOpen = mobileMenu.classList.toggle('open');
+            mobileMenuBtn.setAttribute('aria-expanded', isOpen);
         });
         
         // Header scroll effect
