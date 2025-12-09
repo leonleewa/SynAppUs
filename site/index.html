@@ -81,16 +81,57 @@
             color: #0e1621;
         }
         
+        /* Swipe hint indicator */
+        .swipe-hint {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .swipe-hint-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(14, 22, 33, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .swipe-hint-dot.active {
+            background: #0e1621;
+            width: 24px;
+            border-radius: 4px;
+        }
+        
+        @media (min-width: 768px) {
+            .swipe-hint {
+                display: none;
+            }
+        }
+        
         @media (max-width: 640px) {
             .swiper-button-next,
             .swiper-button-prev {
-                width: 35px;
-                height: 35px;
+                width: 44px;
+                height: 44px;
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 50%;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             }
             
             .swiper-button-next::after,
             .swiper-button-prev::after {
-                font-size: 18px !important;
+                font-size: 16px !important;
+                color: #0e1621;
+            }
+            
+            .swiper-button-next:active,
+            .swiper-button-prev:active {
+                transform: scale(0.95);
             }
         }
         
@@ -141,11 +182,38 @@
         .btn-primary {
             transition: all 0.3s ease;
             box-shadow: 0 4px 14px 0 rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px 0 rgba(0,0,0,0.25);
+        }
+        
+        /* Ripple effect on touch */
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-primary:active::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        @media (hover: none) {
+            .btn-primary:active {
+                transform: scale(0.97);
+            }
         }
         
         /* Mobile button tap targets */
@@ -437,6 +505,36 @@
             }
         }
         
+        /* Extra compact for very small screens (iPhone SE) */
+        @media (max-width: 640px) {
+            .device-frame,
+            .browser-frame {
+                padding: 6px 6px 16px 6px;
+                border-radius: 10px;
+            }
+            
+            .browser-frame::before {
+                height: 20px;
+            }
+            
+            .browser-frame::after {
+                font-size: 10px;
+                top: 6px;
+            }
+            
+            .device-frame::before {
+                width: 50px;
+                height: 3px;
+                top: 4px;
+            }
+            
+            .device-frame::after {
+                width: 35px;
+                height: 8px;
+                bottom: 6px;
+            }
+        }
+        
         .device-frame::before {
             content: '';
             position: absolute;
@@ -676,18 +774,34 @@
                 SynApp: A smart bot for Telegram chat management.
             </h1>
             
+            <!-- Tagline & CTA - Mobile First (appears after H1 on mobile, moves to left column on desktop) -->
+            <div class="text-center lg:hidden mb-6">
+                <p class="text-base sm:text-lg font-semibold text-dark bg-cream/95 px-3 sm:px-4 py-3 rounded-xl sm:rounded-2xl mb-4 leading-relaxed shadow-lg">
+                    From thousands of clicks to just a few —<br class="hidden sm:block">
+                    <span class="text-primary">effortless</span> Telegram group management.
+                </p>
+                <div class="text-center">
+                    <a href="pricing.html" class="btn-primary btn-pulse inline-flex items-center gap-2 bg-primary text-white text-lg sm:text-xl font-bold py-3.5 sm:py-3 px-7 sm:px-6 rounded-full hover:bg-primary/90 transition-all group">
+                        Get Started
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
             <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
                 
-                <!-- Left Column - Tagline & CTA -->
-                <div class="w-full lg:w-2/5 text-center lg:text-left order-2 lg:order-1">
-                    <p class="text-base sm:text-lg md:text-2xl lg:text-4xl font-semibold text-dark bg-cream/95 px-3 sm:px-4 md:px-6 py-3 md:py-4 rounded-xl sm:rounded-2xl mb-4 sm:mb-6 leading-relaxed shadow-lg">
-                        From thousands of clicks to just a few —<br class="hidden sm:block">
+                <!-- Left Column - Tagline & CTA (Desktop Only) -->
+                <div class="hidden lg:block lg:w-2/5 text-left">
+                    <p class="text-2xl lg:text-4xl font-semibold text-dark bg-cream/95 px-6 py-4 rounded-2xl mb-6 leading-relaxed shadow-lg">
+                        From thousands of clicks to just a few —<br>
                         <span class="text-primary">effortless</span> Telegram group management.
                     </p>
-                    <div class="text-center lg:text-left">
-                        <a href="pricing.html" class="btn-primary btn-pulse inline-flex items-center gap-2 md:gap-3 bg-primary text-white text-base sm:text-lg md:text-xl lg:text-2xl font-bold py-3 sm:py-3 md:py-4 px-6 sm:px-6 md:px-8 rounded-full hover:bg-primary/90 transition-all group">
+                    <div class="text-left">
+                        <a href="pricing.html" class="btn-primary btn-pulse inline-flex items-center gap-3 bg-primary text-white text-2xl font-bold py-4 px-8 rounded-full hover:bg-primary/90 transition-all group">
                             Get Started
-                            <svg class="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                             </svg>
                         </a>
@@ -695,7 +809,7 @@
                 </div>
                 
                 <!-- Right Column - Card Carousel -->
-                <div class="w-full lg:w-3/5 order-1 lg:order-2">
+                <div class="w-full lg:w-3/5">
                         <div class="bg-white/70 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 shadow-lg">
                         <div class="swiper feature-swiper" role="region" aria-label="Feature highlights carousel" aria-roledescription="carousel">
                             <div class="swiper-wrapper">
@@ -707,14 +821,16 @@
                                             <img src="images/card-1.jpg" alt="Group & Channel Manager - Dashboard showing all your Telegram groups in one place" class="w-full h-full object-cover" loading="lazy">
                                         </div>
                                         <div class="p-4 sm:p-5">
-                                            <h4 class="font-bold text-lg sm:text-xl text-dark mb-2">Effortlessly manage your Telegram groups and channels</h4>
+                                            <h3 class="font-bold text-lg sm:text-xl text-dark mb-2">Effortlessly manage your Telegram groups and channels</h3>
                                             <p class="text-dark/70 text-base sm:text-lg mb-3 sm:mb-4">Group & Channel Manager</p>
-                                            <a href="#manage" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-base sm:text-lg md:text-xl py-2.5 sm:py-3 px-5 sm:px-6 rounded-full hover:bg-primary/90 transition-all btn-primary group">
-                                                Learn More
-                                                <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                                </svg>
-                                            </a>
+                                            <div class="text-center">
+                                                <a href="#manage" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-base sm:text-lg md:text-xl py-2.5 sm:py-3 px-5 sm:px-6 rounded-full hover:bg-primary/90 transition-all btn-primary group">
+                                                    Learn More
+                                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -726,14 +842,16 @@
                                             <img src="images/card-2.jpg" alt="SSO & Identity Management - Secure single sign-on interface" class="w-full h-full object-cover" loading="lazy">
                                         </div>
                                         <div class="p-4 sm:p-5">
-                                            <h4 class="font-bold text-lg sm:text-xl text-dark mb-2">Access everything easily and securely with one login</h4>
+                                            <h3 class="font-bold text-lg sm:text-xl text-dark mb-2">Access everything easily and securely with one login</h3>
                                             <p class="text-dark/70 text-base sm:text-lg mb-3 sm:mb-4">Single Sign-On (SSO) & Identity Management</p>
-                                            <a href="#sso" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-base sm:text-lg md:text-xl py-2.5 sm:py-3 px-5 sm:px-6 rounded-full hover:bg-primary/90 transition-all btn-primary group">
-                                                Learn More
-                                                <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                                </svg>
-                                            </a>
+                                            <div class="text-center">
+                                                <a href="#sso" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-base sm:text-lg md:text-xl py-2.5 sm:py-3 px-5 sm:px-6 rounded-full hover:bg-primary/90 transition-all btn-primary group">
+                                                    Learn More
+                                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -745,14 +863,16 @@
                                             <img src="images/card-3.jpg" alt="CRM Integration - Connect with HubSpot and other CRM systems" class="w-full h-full object-cover" loading="lazy">
                                         </div>
                                         <div class="p-4 sm:p-5">
-                                            <h4 class="font-bold text-lg sm:text-xl text-dark mb-2">Connect with your CRM for unified customer management</h4>
+                                            <h3 class="font-bold text-lg sm:text-xl text-dark mb-2">Connect with your CRM for unified customer management</h3>
                                             <p class="text-dark/70 text-base sm:text-lg mb-3 sm:mb-4">CRM Integration</p>
-                                            <a href="#crm-integration" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-base sm:text-lg md:text-xl py-2.5 sm:py-3 px-5 sm:px-6 rounded-full hover:bg-primary/90 transition-all btn-primary group">
-                                                Learn More
-                                                <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                                </svg>
-                                            </a>
+                                            <div class="text-center">
+                                                <a href="#crm-integration" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-base sm:text-lg md:text-xl py-2.5 sm:py-3 px-5 sm:px-6 rounded-full hover:bg-primary/90 transition-all btn-primary group">
+                                                    Learn More
+                                                    <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -762,6 +882,13 @@
                             <!-- Navigation Arrows -->
                             <div class="swiper-button-prev !text-dark"></div>
                             <div class="swiper-button-next !text-dark"></div>
+                            
+                            <!-- Swipe Hint Dots (Mobile Only) -->
+                            <div class="swipe-hint">
+                                <div class="swipe-hint-dot active"></div>
+                                <div class="swipe-hint-dot"></div>
+                                <div class="swipe-hint-dot"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -777,23 +904,19 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
             <!-- Section Title -->
-            <h2 class="font-ibm-condensed text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold mb-6 sm:mb-8 text-center lg:text-left">
-                <span class="bg-cream/95 text-dark px-3 md:px-4 py-2 rounded-xl shadow-md inline-block">
-                    Effortlessly manage your Telegram groups and channels
-                </span>
+            <h2 class="font-ibm-condensed bg-cream/95 text-dark px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-center lg:text-left">
+                Effortlessly manage your Telegram groups and channels
             </h2>
             
             <div class="flex flex-col lg:flex-row items-start gap-6 sm:gap-8 lg:gap-12 mt-6 sm:mt-8">
                 
                 <!-- Left Column - Content -->
                 <div class="w-full lg:w-1/2 order-2 lg:order-1">
-                    <h3 class="font-ibm-condensed text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">
-                        <span class="bg-cream/95 text-dark px-3 sm:px-4 py-2 rounded-lg shadow-md inline-block">
-                            Group & Channel Manager
-                        </span>
-                    </h3>
+                    <h4 class="font-ibm-condensed bg-cream/95 text-dark px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl shadow-md mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                        Group & Channel Manager
+                    </h4>
                     
-                    <div class="bg-cream/80 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 shadow-lg feature-card">
+                    <div class="bg-cream/80 rounded-none sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 -mx-4 sm:mx-0 shadow-sm sm:shadow-lg feature-card">
                         <ul class="space-y-3 sm:space-y-4 text-dark font-ibm text-sm sm:text-base lg:text-lg" style="line-height: 1.7;">
                             <li class="flex items-start gap-2 sm:gap-3 md:gap-4">
                                 <svg class="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0 mt-0.5 sm:mt-1" fill="currentColor" viewBox="0 0 20 20">
@@ -873,7 +996,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
             <!-- Section Title -->
-            <h2 class="font-ibm-condensed text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#111] mb-3 sm:mb-4 px-3 sm:px-4 text-center lg:text-left">
+            <h2 class="font-ibm-condensed bg-white/90 text-dark px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-center lg:text-left">
                 Access everything easily and securely with one login
             </h2>
             
@@ -881,11 +1004,11 @@
                 
                 <!-- Right Column - Content -->
                 <div class="w-full lg:w-1/2 order-2 lg:order-1">
-                    <h3 class="font-ibm-condensed text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-dark mb-3 sm:mb-4">
+                    <h4 class="font-ibm-condensed bg-white/90 text-dark px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl shadow-md mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
                         Single Sign-On (SSO) & Identity Management
-                    </h3>
+                    </h4>
                     
-                    <div class="bg-cream/80 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 shadow-lg feature-card">
+                    <div class="bg-cream/80 rounded-none sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 -mx-4 sm:mx-0 shadow-sm sm:shadow-lg feature-card">
                         <p class="text-dark font-ibm text-sm sm:text-base lg:text-lg mb-3 sm:mb-4" style="line-height: 1.7;">
                             The <strong>SSO/Identity Management</strong> feature streamlines how you and your team access SynApp and your Telegram resources. Here's how it helps:
                         </p>
@@ -958,7 +1081,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
             <!-- Section Title -->
-            <h2 class="font-ibm-condensed text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 px-3 sm:px-4 text-center lg:text-left">
+            <h2 class="font-ibm-condensed bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-center lg:text-left">
                 Seamlessly track all customer interactions through your corporate CRM.
             </h2>
             
@@ -966,11 +1089,11 @@
                 
                 <!-- Left Column - Content -->
                 <div class="w-full lg:w-1/2 order-2 lg:order-1">
-                    <h3 class="font-ibm-condensed text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4">
+                    <h4 class="font-ibm-condensed bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl shadow-md mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
                         CRM Integration
-                    </h3>
+                    </h4>
                     
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 shadow-lg feature-card border border-white/20">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-none sm:rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 -mx-4 sm:mx-0 shadow-sm sm:shadow-lg feature-card border-y sm:border border-white/20">
                         <p class="text-white/90 font-ibm text-sm sm:text-base lg:text-lg mb-3 sm:mb-4" style="line-height: 1.7;">
                             The <strong class="text-primary">CRM Integration</strong> feature connects SynApp with your corporate CRM system (like HubSpot), ensuring all interactions are captured and organized.
                         </p>
@@ -1063,10 +1186,10 @@
                 <!-- Navigation -->
                 <div class="text-center">
                     <h4 class="font-bold text-lg mb-4">Quick Links</h4>
-                    <nav class="flex flex-col gap-3 sm:gap-2">
-                        <a href="index.html" class="text-white hover:text-white/90 transition-colors link-underline inline-block text-base sm:text-sm py-2 sm:py-0">Home</a>
-                        <a href="pricing.html" class="text-white hover:text-white/90 transition-colors link-underline inline-block text-base sm:text-sm py-2 sm:py-0">Pricing</a>
-                        <a href="contacts.html" class="text-white hover:text-white/90 transition-colors link-underline inline-block text-base sm:text-sm py-2 sm:py-0">Contacts</a>
+                    <nav class="flex flex-col gap-2 sm:gap-2">
+                        <a href="index.html" class="text-white hover:text-white/90 transition-colors link-underline inline-block text-base sm:text-sm py-3 sm:py-0 px-4 sm:px-0 -mx-4 sm:mx-0 rounded-lg sm:rounded-none hover:bg-white/10 sm:hover:bg-transparent">Home</a>
+                        <a href="pricing.html" class="text-white hover:text-white/90 transition-colors link-underline inline-block text-base sm:text-sm py-3 sm:py-0 px-4 sm:px-0 -mx-4 sm:mx-0 rounded-lg sm:rounded-none hover:bg-white/10 sm:hover:bg-transparent">Pricing</a>
+                        <a href="contacts.html" class="text-white hover:text-white/90 transition-colors link-underline inline-block text-base sm:text-sm py-3 sm:py-0 px-4 sm:px-0 -mx-4 sm:mx-0 rounded-lg sm:rounded-none hover:bg-white/10 sm:hover:bg-transparent">Contacts</a>
                     </nav>
                 </div>
                 
@@ -1078,8 +1201,8 @@
                     <p class="text-white text-sm leading-relaxed mb-4">
                         Ready to streamline your Telegram management? We're here to help.
                     </p>
-                    <a href="contacts.html" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-3 sm:py-2 px-6 sm:px-5 text-base sm:text-sm rounded-full transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <a href="contacts.html" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-3 sm:py-2 px-6 sm:px-5 text-base sm:text-sm rounded-full transition-all hover:scale-105 active:scale-95">
+                        <svg class="w-5 h-5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
                         Contact Us
@@ -1155,6 +1278,16 @@
             preventClicksPropagation: true,
             // Better mobile navigation
             threshold: 10, // Minimum swipe distance in pixels
+            // Update swipe hint dots on slide change
+            on: {
+                slideChange: function() {
+                    const dots = document.querySelectorAll('.swipe-hint-dot');
+                    const realIndex = this.realIndex; // Get real index (not loop index)
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === realIndex);
+                    });
+                }
+            }
         });
         
         // Mobile menu toggle

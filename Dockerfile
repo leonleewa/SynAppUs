@@ -12,7 +12,7 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy website files
-COPY Synapp.us_Updated/ /usr/share/nginx/html/
+COPY site/ /usr/share/nginx/html/
 
 # Set proper permissions
 RUN chmod -R 755 /usr/share/nginx/html

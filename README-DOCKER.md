@@ -16,7 +16,7 @@ Synapp.us/
 ├── docker-compose.yml      # Docker Compose configuration
 ├── nginx.conf             # Nginx web server configuration
 ├── .dockerignore          # Files to exclude from Docker build
-└── Synapp.us_Updated/     # Website source files
+└── site/                  # Website source files
     ├── index.html
     ├── pricing.html
     ├── contacts.html
@@ -341,7 +341,7 @@ docker-compose exec synappus-web ls -la /usr/share/nginx/html
 Current image is based on `nginx:alpine` which is ~40MB. Already optimized!
 
 To further reduce size:
-- Remove unused images from `Synapp.us_Updated/images/`
+- Remove unused images from `site/images/`
 - Compress images before building
 - Use `.dockerignore` effectively (already configured)
 
