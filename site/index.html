@@ -216,6 +216,130 @@
             }
         }
         
+        /* Phase 3: Enhanced button interactions */
+        
+        /* Scroll-in animation for buttons */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .btn-animate {
+            opacity: 0;
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+        
+        .btn-animate.visible {
+            animation-play-state: running;
+        }
+        
+        /* Enhanced hover state with glow effect */
+        @media (hover: hover) {
+            .btn-primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px 0 rgba(36, 161, 222, 0.4),
+                           0 4px 15px 0 rgba(0,0,0,0.2);
+            }
+            
+            .btn-primary:hover svg {
+                transform: translateX(4px);
+            }
+        }
+        
+        /* Smooth icon transition */
+        .btn-primary svg {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        /* Button press animation with spring effect */
+        @keyframes buttonPress {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        
+        .btn-primary:active {
+            animation: buttonPress 0.3s ease;
+        }
+        
+        /* Pulse animation for hero CTA */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 4px 14px 0 rgba(0,0,0,0.2);
+            }
+            50% {
+                box-shadow: 0 4px 20px 0 rgba(36, 161, 222, 0.5),
+                           0 0 30px 0 rgba(36, 161, 222, 0.3);
+            }
+        }
+        
+        .btn-pulse:not(:hover):not(:active) {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        /* Border separator fade-in animation */
+        .border-separator {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .border-separator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, currentColor, transparent);
+            animation: borderSlide 1.5s ease-out forwards;
+        }
+        
+        @keyframes borderSlide {
+            to {
+                left: 100%;
+            }
+        }
+        
+        /* Micro-interaction: subtle scale on focus */
+        .btn-primary:focus-visible {
+            transform: scale(1.02);
+            outline: 3px solid rgba(36, 161, 222, 0.5);
+            outline-offset: 3px;
+        }
+        
+        /* Loading state for buttons (progressive enhancement) */
+        .btn-primary.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        .btn-primary.loading::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Stagger animation for multiple buttons */
+        .btn-animate:nth-child(1) { animation-delay: 0.1s; }
+        .btn-animate:nth-child(2) { animation-delay: 0.2s; }
+        .btn-animate:nth-child(3) { animation-delay: 0.3s; }
+        
         /* Mobile button tap targets */
         @media (max-width: 640px) {
             .btn-primary {
@@ -1424,6 +1548,122 @@
                 closeLightbox();
             }
         });
+        
+        // Phase 3: Enhanced button interactions
+        
+        // Intersection Observer for button scroll animations
+        const buttonObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Only animate once
+                    buttonObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // Observe all section buttons (not carousel buttons for better UX)
+        document.querySelectorAll('section[id] .btn-primary').forEach(button => {
+            button.classList.add('btn-animate');
+            buttonObserver.observe(button);
+        });
+        
+        // Enhanced touch feedback for mobile
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.btn-primary').forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.97)';
+                }, { passive: true });
+                
+                button.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 100);
+                }, { passive: true });
+            });
+        }
+        
+        // Prevent double-tap zoom on buttons (better mobile UX)
+        let lastTouchEnd = 0;
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            button.addEventListener('touchend', function(e) {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, { passive: false });
+        });
+        
+        // Add haptic feedback for supported devices
+        if ('vibrate' in navigator) {
+            document.querySelectorAll('.btn-primary').forEach(button => {
+                button.addEventListener('click', () => {
+                    navigator.vibrate(10); // Subtle 10ms vibration
+                });
+            });
+        }
+        
+        // Progressive enhancement: Add loading state on click
+        document.querySelectorAll('a.btn-primary').forEach(link => {
+            // Only for external navigation, not anchor links
+            if (!link.getAttribute('href').startsWith('#')) {
+                link.addEventListener('click', function(e) {
+                    // Don't prevent default, just add visual feedback
+                    this.classList.add('loading');
+                    
+                    // Remove loading state after delay (in case user returns)
+                    setTimeout(() => {
+                        this.classList.remove('loading');
+                    }, 2000);
+                });
+            }
+        });
+        
+        // Smooth hover effect for icon movement
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            const icon = button.querySelector('svg');
+            if (icon) {
+                button.addEventListener('mouseenter', () => {
+                    icon.style.transform = 'translateX(4px)';
+                });
+                button.addEventListener('mouseleave', () => {
+                    icon.style.transform = 'translateX(0)';
+                });
+            }
+        });
+        
+        // Add subtle animation to border separators when they come into view
+        const separatorObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('border-separator');
+                    separatorObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+        
+        // Observe button containers with borders
+        document.querySelectorAll('.border-t').forEach(element => {
+            if (element.querySelector('.btn-primary')) {
+                separatorObserver.observe(element);
+            }
+        });
+        
+        // Preload hover states (progressive enhancement)
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                // Warm up hover animations
+                document.querySelectorAll('.btn-primary').forEach(button => {
+                    button.style.willChange = 'transform, box-shadow';
+                });
+            });
+        }
     </script>
     
     <!-- Structured Data -->
