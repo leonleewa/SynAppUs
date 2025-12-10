@@ -353,6 +353,76 @@
                 padding: 14px 28px;
             }
             
+            /* Mobile spacing optimizations - reduce vertical gaps */
+            
+            /* Reduce section padding */
+            section {
+                padding-top: 1.5rem !important; /* 24px instead of 32px */
+                padding-bottom: 1.5rem !important;
+            }
+            
+            /* Reduce heading bottom margins */
+            section h1 {
+                margin-bottom: 0.75rem !important; /* 12px instead of 16px */
+            }
+            
+            section h2 {
+                margin-bottom: 1rem !important; /* 16px instead of 24px */
+            }
+            
+            section h4 {
+                margin-bottom: 0.75rem !important; /* 12px instead of 16px */
+            }
+            
+            /* Reduce content block margins */
+            .feature-card {
+                margin-bottom: 0.75rem !important; /* 12px instead of default */
+            }
+            
+            /* Reduce button container spacing */
+            .text-center.mt-6 {
+                margin-top: 1rem !important; /* 16px instead of 24px */
+                padding-top: 1rem !important; /* 16px instead of 24px */
+            }
+            
+            .text-center.mb-8 {
+                margin-bottom: 1.5rem !important; /* 24px instead of 32px */
+            }
+            
+            /* Reduce hero section spacing */
+            .text-center.lg\:hidden.mb-8 {
+                margin-bottom: 1rem !important; /* 16px instead of 32px */
+            }
+            
+            /* Reduce paragraph to button spacing */
+            .text-center.lg\:hidden p {
+                margin-bottom: 1rem !important; /* 16px instead of 24px */
+            }
+            
+            /* Reduce carousel card padding */
+            .swiper-slide .p-4 {
+                padding: 0.75rem !important; /* 12px instead of 16px */
+            }
+            
+            /* Reduce gap between sections */
+            section + section {
+                margin-top: -0.5rem !important; /* Pull sections closer */
+            }
+            
+            /* Reduce footer top padding */
+            footer .pt-12 {
+                padding-top: 2rem !important; /* 32px instead of 48px */
+            }
+            
+            /* Tighter grid gaps in footer */
+            footer .gap-8 {
+                gap: 1.5rem !important; /* 24px instead of 32px */
+            }
+            
+            footer .mb-8 {
+                margin-bottom: 1.5rem !important; /* 24px instead of 32px */
+            }
+            
             /* Mobile typography */
             h1, h2, h3 {
                 line-height: 1.3;
@@ -888,19 +958,19 @@
     <main id="main-content">
 
     <!-- Main Features Section with Background -->
-    <section class="relative py-8 sm:py-12 md:py-16 lg:py-20 section-mask" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
+    <section class="relative py-6 sm:py-12 md:py-16 lg:py-20 section-mask" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
         <!-- Background overlay for better text readability -->
         <div class="absolute inset-0 bg-cream/60 z-0"></div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
             <!-- Hero Title -->
-            <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold text-dark text-center leading-tight mb-4 sm:mb-6 lg:mb-8 max-w-5xl mx-auto px-3 sm:px-4">
+            <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold text-dark text-center leading-tight mb-3 sm:mb-6 lg:mb-8 max-w-5xl mx-auto px-3 sm:px-4">
                 SynApp: A smart bot for Telegram chat management.
             </h1>
             
             <!-- Tagline & CTA - Mobile First (appears after H1 on mobile, moves to left column on desktop) -->
-            <div class="text-center lg:hidden mb-8">
-                <p class="text-base sm:text-lg font-semibold text-dark bg-cream/95 px-3 sm:px-4 py-3 rounded-xl sm:rounded-2xl mb-6 leading-relaxed shadow-lg">
+            <div class="text-center lg:hidden mb-5">
+                <p class="text-base sm:text-lg font-semibold text-dark bg-cream/95 px-3 sm:px-4 py-3 rounded-xl sm:rounded-2xl mb-4 leading-relaxed shadow-lg">
                     From thousands of clicks to just a few —<br class="hidden sm:block">
                     <span class="text-primary">effortless</span> Telegram group management.
                 </p>
@@ -1022,21 +1092,21 @@
     </section>
 
     <!-- Feature Section 1: Group Manager -->
-    <section id="manage" class="relative py-8 sm:py-12 md:py-16 lg:py-20 section-mask-reversed" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
+    <section id="manage" class="relative py-6 sm:py-12 md:py-16 lg:py-20 section-mask-reversed" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
         <!-- Background overlay for better text readability -->
         <div class="absolute inset-0 bg-cream/60 z-0"></div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
             <!-- Section Title -->
-            <h2 class="font-ibm-condensed bg-cream/95 text-dark px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-center lg:text-left">
+            <h2 class="font-ibm-condensed bg-cream/95 text-dark px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg mb-4 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-center lg:text-left">
                 Effortlessly manage your Telegram groups and channels
             </h2>
             
-            <div class="flex flex-col lg:flex-row items-start gap-6 sm:gap-8 lg:gap-12 mt-6 sm:mt-8">
+            <div class="flex flex-col lg:flex-row items-start gap-4 sm:gap-8 lg:gap-12 mt-4 sm:mt-8">
                 
                 <!-- Left Column - Content -->
                 <div class="w-full lg:w-1/2 order-2 lg:order-1">
-                    <h4 class="font-ibm-condensed bg-cream/95 text-dark px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl shadow-md mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                    <h4 class="font-ibm-condensed bg-cream/95 text-dark px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl shadow-md mb-2 sm:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
                         Group & Channel Manager
                     </h4>
                     
@@ -1087,7 +1157,7 @@
                         </ul>
                     </div>
                     
-                    <div class="text-center mt-6 pt-6 border-t border-dark/10 mb-8 sm:mb-0">
+                    <div class="text-center mt-4 pt-4 border-t border-dark/10 mb-6 sm:mb-0">
                         <a href="pricing.html" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-base sm:text-lg md:text-xl py-3 px-6 rounded-full shadow-lg hover:bg-primary/90 transition-all btn-primary group">
                             Learn More
                             <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1115,20 +1185,20 @@
     </section>
 
     <!-- Feature Section 2: SSO -->
-    <section id="sso" class="relative py-8 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-br from-primary/5 via-cream to-secondary/5">
+    <section id="sso" class="relative py-6 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-br from-primary/5 via-cream to-secondary/5">
         <div class="absolute inset-0 opacity-10" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;"></div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
             <!-- Section Title -->
-            <h2 class="font-ibm-condensed bg-white/90 text-dark px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-center lg:text-left">
+            <h2 class="font-ibm-condensed bg-white/90 text-dark px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg mb-4 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-center lg:text-left">
                 Access everything easily and securely with one login
             </h2>
             
-            <div class="flex flex-col lg:flex-row-reverse items-center gap-6 sm:gap-8 lg:gap-16 mt-6 sm:mt-8">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-4 sm:gap-8 lg:gap-16 mt-4 sm:mt-8">
                 
                 <!-- Right Column - Content -->
                 <div class="w-full lg:w-1/2 order-2 lg:order-1">
-                    <h4 class="font-ibm-condensed bg-white/90 text-dark px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl shadow-md mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                    <h4 class="font-ibm-condensed bg-white/90 text-dark px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl shadow-md mb-2 sm:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
                         Single Sign-On (SSO) & Identity Management
                     </h4>
                     
@@ -1170,7 +1240,7 @@
                         </ul>
                     </div>
                     
-                    <div class="text-center mt-6 pt-6 border-t border-dark/10 mb-8 sm:mb-0">
+                    <div class="text-center mt-4 pt-4 border-t border-dark/10 mb-6 sm:mb-0">
                         <a href="pricing.html" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-base sm:text-lg md:text-xl py-3 px-6 rounded-full shadow-lg hover:bg-primary/90 transition-all btn-primary group">
                             Learn More
                             <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1198,22 +1268,22 @@
     </section>
 
     <!-- Feature Section 3: CRM Integration -->
-    <section id="crm-integration" class="relative pt-8 sm:pt-12 md:pt-16 lg:pt-20 pb-24 sm:pb-16 md:pb-20 lg:pb-24 bg-gradient-to-br from-dark via-[#1a2634] to-dark text-white overflow-hidden">
+    <section id="crm-integration" class="relative pt-6 sm:pt-12 md:pt-16 lg:pt-20 pb-16 sm:pb-16 md:pb-20 lg:pb-24 bg-gradient-to-br from-dark via-[#1a2634] to-dark text-white overflow-hidden">
         <div class="absolute inset-0 opacity-10" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;"></div>
         <div class="absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
         <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
             <!-- Section Title -->
-            <h2 class="font-ibm-condensed bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-center lg:text-left">
+            <h2 class="font-ibm-condensed bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg mb-4 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-center lg:text-left">
                 Seamlessly track all customer interactions through your corporate CRM.
             </h2>
             
-            <div class="flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-16 mt-6 sm:mt-8">
+            <div class="flex flex-col lg:flex-row items-center gap-4 sm:gap-8 lg:gap-16 mt-4 sm:mt-8">
                 
                 <!-- Left Column - Content -->
                 <div class="w-full lg:w-1/2 order-2 lg:order-1">
-                    <h4 class="font-ibm-condensed bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl shadow-md mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+                    <h4 class="font-ibm-condensed bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl shadow-md mb-2 sm:mb-4 text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
                         CRM Integration
                     </h4>
                     
@@ -1255,7 +1325,7 @@
                         </ul>
                     </div>
                     
-                    <div class="text-center mt-6 pt-6 border-t border-white/20 mb-8 sm:mb-0">
+                    <div class="text-center mt-4 pt-4 border-t border-white/20 mb-6 sm:mb-0">
                         <a href="pricing.html" class="inline-flex items-center gap-2 bg-primary text-white font-bold text-base sm:text-lg md:text-xl py-3 px-6 rounded-full shadow-lg hover:bg-primary/90 transition-all btn-primary group">
                             Learn More
                             <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1294,8 +1364,8 @@
         </div>
         
         <!-- Footer Main Content -->
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
                 
                 <!-- Logo & Description -->
                 <div class="text-center md:text-left">
