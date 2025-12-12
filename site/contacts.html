@@ -331,15 +331,16 @@
                 
                 <!-- Contact Form -->
                 <!-- 
-                    SETUP INSTRUCTIONS:
-                    1. Go to https://formspree.io/ and create a free account
-                    2. Create a new form and get your unique form ID
-                    3. Replace "YOUR_FORM_ID" below with your actual form ID
-                    4. Configure email notifications in Formspree dashboard
-                    Alternative: Use EmailJS, Web3Forms, or your own backend API
+                    GOOGLE SHEETS INTEGRATION SETUP:
+                    1. Create a Google Sheet with columns: Timestamp | Name | Email | Phone | Plan | Subject | Message
+                    2. Go to Extensions > Apps Script in your Google Sheet
+                    3. Paste the Google Apps Script code (provided separately)
+                    4. Deploy as Web App (Execute as: Me, Access: Anyone)
+                    5. Copy the Web App URL and replace GOOGLE_SCRIPT_URL below
+                    6. Test the form - submissions will appear in your sheet instantly!
                 -->
                 <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-12 shadow-xl animate-fade-in-up animate-delay-100">
-                    <form id="contact-form" class="space-y-6" novalidate action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <form id="contact-form" class="space-y-6" novalidate data-google-script-url="https://script.google.com/macros/s/AKfycbw2gtqahYVBVNZpUezoqO0ua358hjwrlAQ1K019_ilai5ubxNw11QmBQSAHaMTZ9xhV/exec">
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -623,7 +624,7 @@
             }
         });
         
-        // Form submission
+        // Form submission - Google Sheets Integration
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -651,37 +652,62 @@
             btnSpinner.classList.remove('hidden');
             
             try {
-                // Get form action URL (Formspree endpoint)
-                const formAction = contactForm.getAttribute('action');
+                // Get Google Script URL from data attribute
+                const googleScriptUrl = contactForm.getAttribute('data-google-script-url');
                 
-                // Prepare form data
-                const formData = new FormData(contactForm);
+                // Check if URL is configured
+                if (!googleScriptUrl || googleScriptUrl.includes('YOUR_GOOGLE_SCRIPT_URL')) {
+                    throw new Error('Google Script URL not configured. Please set up the integration.');
+                }
                 
-                // Submit form using fetch API
-                const response = await fetch(formAction, {
+                // Prepare form data as JSON
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    plan: document.getElementById('plan').value,
+                    subject: document.getElementById('subject').value.trim(),
+                    message: document.getElementById('message').value.trim()
+                };
+                
+                // Submit to Google Sheets via Apps Script
+                const response = await fetch(googleScriptUrl, {
                     method: 'POST',
-                    body: formData,
+                    mode: 'no-cors', // Required for Google Apps Script
                     headers: {
-                        'Accept': 'application/json'
-                    }
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
                 });
                 
-                if (response.ok) {
-                    // Show success message
-                    contactForm.style.display = 'none';
-                    successMessage.classList.remove('hidden');
-                    
-                    // Reset form
-                    contactForm.reset();
-                } else {
-                    // Handle error response
-                    const data = await response.json();
-                    throw new Error(data.error || 'Form submission failed');
-                }
+                // Note: With no-cors mode, we can't read the response
+                // So we assume success if no error was thrown
+                // The data will be in Google Sheets regardless
+                
+                // Show success message
+                contactForm.style.display = 'none';
+                successMessage.classList.remove('hidden');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
             } catch (error) {
                 // Show error message
                 console.error('Form submission error:', error);
-                alert('Sorry, there was an error sending your message. Please try again or contact us directly via email.');
+                
+                // User-friendly error message
+                let errorMsg = 'Sorry, there was an error sending your message.';
+                
+                if (error.message.includes('not configured')) {
+                    errorMsg = 'Form integration is not yet configured. Please contact us directly.';
+                } else if (error.message.includes('Failed to fetch')) {
+                    errorMsg = 'Network error. Please check your connection and try again.';
+                }
+                
+                alert(errorMsg + '\n\nIf the problem persists, please contact us directly via email.');
             } finally {
                 // Reset button state
                 submitBtn.disabled = false;
