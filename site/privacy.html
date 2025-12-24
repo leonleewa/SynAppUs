@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#24a1de">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Privacy Policy | SynAppUs Bot</title>
+    <meta name="description" content="Privacy Policy for SynApp Telegram Bot. Learn how we collect, use, and protect your data when using our Telegram group management service.">
+    <link rel="icon" href="images/favicon.jpg" sizes="32x32">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://synapp.us/privacy.html">
+    <meta property="og:title" content="Privacy Policy | SynAppUs Bot">
+    <meta property="og:description" content="Privacy Policy for SynApp Telegram Bot. Learn how we collect, use, and protect your data when using our Telegram group management service.">
+    <meta property="og:image" content="https://synapp.us/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#24a1de',
+                        secondary: '#1e73be',
+                        cream: '#f8f6f0',
+                        dark: '#0e1621',
+                        accent: '#e34457',
+                    },
+                    fontFamily: {
+                        'open-sans': ['Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
+                        'ibm-condensed': ['IBM Plex Sans Condensed', 'Helvetica', 'Arial', 'sans-serif'],
+                        'ibm': ['IBM Plex Sans', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-delay-100 { animation-delay: 0.1s; }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            max-height: 300px;
+            opacity: 1;
+        }
+        
+        /* Animated hamburger menu */
+        .hamburger-line-1,
+        .hamburger-line-2,
+        .hamburger-line-3 {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        #mobile-menu-btn[aria-expanded="true"] .hamburger-line-1 {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        #mobile-menu-btn[aria-expanded="true"] .hamburger-line-2 {
+            opacity: 0;
+        }
+        
+        #mobile-menu-btn[aria-expanded="true"] .hamburger-line-3 {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: calc(20px + env(safe-area-inset-bottom));
+            right: calc(20px + env(safe-area-inset-right));
+            width: 56px;
+            height: 56px;
+            background: #24a1de;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border: none;
+        }
+        
+        @media (max-width: 640px) {
+            .scroll-to-top {
+                bottom: calc(16px + env(safe-area-inset-bottom));
+                right: calc(16px + env(safe-area-inset-right));
+            }
+        }
+        
+        .scroll-to-top:hover {
+            background: #1e73be;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Mobile typography */
+        @media (max-width: 640px) {
+            h1, h2, h3 {
+                line-height: 1.3;
+            }
+            
+            .font-ibm-condensed {
+                letter-spacing: -0.01em;
+            }
+            
+            p, li {
+                line-height: 1.6;
+            }
+        }
+        
+        @media (min-width: 641px) {
+            h1, h2, h3 {
+                line-height: 1.2;
+            }
+            
+            p, li {
+                line-height: 1.7;
+            }
+        }
+        
+        /* Privacy policy content styles */
+        .privacy-content h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-content h2:first-child {
+            margin-top: 0;
+        }
+        
+        .privacy-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-content ul {
+            margin-bottom: 1rem;
+        }
+        
+        .privacy-content a {
+            color: #24a1de;
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 2px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .privacy-content a:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="font-open-sans text-dark bg-cream">
+
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">
+        Skip to main content
+    </a>
+
+    <!-- Header -->
+    <header class="bg-primary fixed w-full top-0 z-50 shadow-md transition-all duration-300" id="main-header">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-[57px] lg:h-[80px]">
+                <!-- Logo -->
+                <a href="index.html" class="flex-shrink-0">
+                    <img src="images/logo-long.jpg" alt="SynAppUs Bot" class="h-8 lg:h-12 w-auto">
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="text-white text-lg font-semibold hover:opacity-80 transition-opacity">Home</a>
+                    <a href="pricing.html" class="text-white text-lg font-semibold hover:opacity-80 transition-opacity">Pricing</a>
+                    <a href="contacts.html" class="text-white text-lg font-semibold hover:opacity-80 transition-opacity">Contacts</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white p-2" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+                    <svg class="w-6 h-6 hamburger-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path class="hamburger-line-1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16"></path>
+                        <path class="hamburger-line-2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16"></path>
+                        <path class="hamburger-line-3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <nav class="mobile-menu md:hidden bg-primary border-t border-white/20" id="mobile-menu">
+                <div class="py-4 space-y-3">
+                    <a href="index.html" class="block text-white text-lg font-semibold hover:opacity-80 transition-opacity px-4 py-2">Home</a>
+                    <a href="pricing.html" class="block text-white text-lg font-semibold hover:opacity-80 transition-opacity px-4 py-2">Pricing</a>
+                    <a href="contacts.html" class="block text-white text-lg font-semibold hover:opacity-80 transition-opacity px-4 py-2">Contacts</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-[57px] lg:h-[80px]"></div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="bg-cream py-8 sm:py-12 lg:py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="font-ibm-condensed text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4 sm:mb-6 animate-fade-in-up">
+                Privacy Policy for SynApp Telegram Bot
+            </h1>
+            <div class="inline-flex items-center gap-2 bg-primary/10 border-2 border-primary text-primary px-6 py-2 rounded-full font-semibold animate-fade-in-up animate-delay-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>Effective Date: 1 July 2025</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Content -->
+    <section class="py-8 sm:py-12 md:py-16 lg:py-20" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-cream/80"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 shadow-xl privacy-content">
+                    
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed mb-4">
+                        This Privacy Policy explains how SynApp (the "Service", the "Bot", and any related web dashboard) processes information when you use our Telegram bot and connected services. It supplements the <a href="https://core.telegram.org/bots/features#privacy-mode" target="_blank" rel="noopener noreferrer">Telegram Standard Bot Privacy Policy</a> and the <a href="https://telegram.org/privacy" target="_blank" rel="noopener noreferrer">Telegram Privacy Policy</a>.
+                    </p>
+
+                    <h2 class="font-ibm-condensed text-xl sm:text-2xl lg:text-3xl font-bold text-dark">
+                        1. Who we are &amp; scope
+                    </h2>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        This policy covers the SynApp Telegram bot, its automation features, and any linked web dashboard used by your organization.
+                    </p>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        If you access SynApp under an organization workspace, your organization is usually the data controller and SynApp acts as the processor under their instructions. If you use SynApp directly as an individual, SynApp is the data controller.
+                    </p>
+
+                    <h2 class="font-ibm-condensed text-xl sm:text-2xl lg:text-3xl font-bold text-dark">
+                        2. What we collect
+                    </h2>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        Only data needed to operate the bot and provide features is processed.
+                    </p>
+                    <ul class="list-none ml-6 sm:ml-8 space-y-2 sm:space-y-3 text-base sm:text-lg text-dark/90 leading-relaxed">
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Telegram identifiers &amp; profile:</strong> user ID, username/display name, language, and whether you are an admin/member of a chat; chat/group/channel IDs, titles.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Membership &amp; roles:</strong> join/leave status, role-based access (RBAC) assignments, allow/deny lists.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Message data you send to the Bot:</strong> commands, forms, support requests, and content for automations (e.g., scheduled/bulk announcements). We store message content only when necessary to execute a feature (e.g., queueing a scheduled message, moderation review) or when your organization enables audit logging.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Group management signals:</strong> actions taken by the Bot (add/remove users, mute, delete messages), auto‑delete rules, inactivity metrics and timestamps used for clean‑up.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>SSO/Identity data (if enabled):</strong> basic account info returned by your chosen identity provider (e.g., name, email, org ID, roles) to sign you in and assign permissions.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>CRM integration (if enabled by your organization):</strong> interaction logs sent to the CRM (e.g., HubSpot/Salesforce)—typically message text you instruct SynApp to log, plus related metadata (sender, chat, time, link to message).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Web/app telemetry:</strong> IP address, user-agent, device/OS info, timestamps, and error/diagnostic logs for security and reliability of the dashboard and APIs.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Attachments &amp; media:</strong> only if you submit them to the Bot for delivery or moderation; stored transiently or per your organization's retention settings.</span>
+                        </li>
+                    </ul>
+
+                    <h2 class="font-ibm-condensed text-xl sm:text-2xl lg:text-3xl font-bold text-dark">
+                        3. Why we use your data (legal bases)
+                    </h2>
+                    <ul class="list-none ml-6 sm:ml-8 space-y-2 sm:space-y-3 text-base sm:text-lg text-dark/90 leading-relaxed">
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Provide the service (perform our contract):</strong> group/channel management, bulk &amp; scheduled messaging, onboarding/offboarding, RBAC, moderation, and alerts.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Security &amp; abuse prevention (legitimate interests):</strong> fraud/spam prevention, rate limiting, audit trails, incident investigation.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Improve reliability (legitimate interests):</strong> analytics, debugging, and quality assurance using aggregated or de‑identified data where possible.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>With consent:</strong> where required (e.g., optional marketing updates or where local law demands consent for certain logging).</span>
+                        </li>
+                    </ul>
+
+                    <h2 class="font-ibm-condensed text-xl sm:text-2xl lg:text-3xl font-bold text-dark">
+                        4. Automated actions &amp; moderation
+                    </h2>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        SynApp can automatically apply rules (e.g., keyword filters, link restrictions, or inactivity removal) configured by your admins. These actions may affect your ability to post or remain in a group. You can request human review from your group's admins at any time.
+                    </p>
+
+                    <h2 class="font-ibm-condensed text-xl sm:text-2xl lg:text-3xl font-bold text-dark">
+                        5. Sharing &amp; recipients
+                    </h2>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        We don't sell your data. We share it only with:
+                    </p>
+                    <ul class="list-none ml-6 sm:ml-8 space-y-2 sm:space-y-3 text-base sm:text-lg text-dark/90 leading-relaxed">
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Telegram Platform</strong> (by design, messages and metadata flow through Telegram).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Your organization's selected tools</strong> (if enabled): identity providers (SSO), CRMs (e.g., HubSpot/Salesforce), and other integrations you connect.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Service providers under contract</strong> (hosting, storage, monitoring/alerting, analytics, email/support desk) bound by confidentiality and security commitments.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Law enforcement</strong> when legally required.</span>
+                        </li>
+                    </ul>
+
+                    <h2 class="font-ibm-condensed text-xl sm:text-2xl lg:text-3xl font-bold text-dark">
+                        6. Data storage, location &amp; retention
+                    </h2>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        Data is encrypted in transit; at rest where applicable. Access is RBAC‑restricted and audited.
+                    </p>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        We store only what's needed and for as long as necessary:
+                    </p>
+                    <ul class="list-none ml-6 sm:ml-8 space-y-2 sm:space-y-3 text-base sm:text-lg text-dark/90 leading-relaxed">
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Operational logs &amp; diagnostics:</strong> up to ~90 days, unless extended for security investigations.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Scheduled/queued messages:</strong> until sent or canceled.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Role/membership mappings &amp; configuration:</strong> while your workspace exists or until removed by admins.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Audit logs (if enabled):</strong> default 180 days (admin‑configurable).</span>
+                        </li>
+                    </ul>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        Data may be processed in the US and other regions. Where required, we use approved transfer mechanisms (e.g., Standard Contractual Clauses) for cross‑border transfers.
+                    </p>
+
+                    <h2 class="font-ibm-condensed text-xl sm:text-2xl lg:text-3xl font-bold text-dark">
+                        7. Your rights &amp; choices
+                    </h2>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        Depending on your location, you may have rights to access, correct, delete, restrict, or object to processing, and to data portability.
+                    </p>
+                    <ul class="list-none ml-6 sm:ml-8 space-y-2 sm:space-y-3 text-base sm:text-lg text-dark/90 leading-relaxed mb-4">
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Through your organization:</strong> if your workspace controls the Bot, contact the group's admins or your organization's privacy contact.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary font-bold mt-1">•</span>
+                            <span><strong>Directly with us:</strong> see Contact below. We will respond within applicable legal timeframes.</span>
+                        </li>
+                    </ul>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        For privacy-related inquiries or to exercise your rights, please visit our <a href="contacts.html">contact page</a>.
+                    </p>
+
+                    <h2 class="font-ibm-condensed text-xl sm:text-2xl lg:text-3xl font-bold text-dark">
+                        8. Children
+                    </h2>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        The Service is not intended for children under 18 (or the minimum age required by your jurisdiction). We do not knowingly collect data from such individuals.
+                    </p>
+
+                    <h2 class="font-ibm-condensed text-xl sm:text-2xl lg:text-3xl font-bold text-dark">
+                        9. Security
+                    </h2>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        We apply industry practices: encryption, SSO/2FA support, secrets management for API tokens, least‑privilege roles, input validation, rate limiting, and continuous monitoring. No method is 100% secure, but we strive to protect your data.
+                    </p>
+
+                    <h2 class="font-ibm-condensed text-xl sm:text-2xl lg:text-3xl font-bold text-dark">
+                        10. Changes to this policy
+                    </h2>
+                    <p class="text-base sm:text-lg text-dark/90 leading-relaxed">
+                        We may update this Policy. We'll post changes here and update the "Effective Date". Material changes will be highlighted in‑bot or on our site.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white relative">
+        <!-- Wave Divider -->
+        <div class="absolute top-0 left-0 right-0 overflow-hidden leading-none transform -translate-y-full">
+            <svg class="relative block w-full h-16 lg:h-24" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="#24a1de">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.1,118.92,156.63,69.08,321.39,56.44Z"></path>
+            </svg>
+        </div>
+        
+        <!-- Footer Main Content -->
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                
+                <!-- Logo & Description -->
+                <div class="text-center md:text-left">
+                    <a href="index.html" class="inline-block mb-4">
+                        <img src="images/logo-long.jpg" alt="SynAppUs Bot" class="h-10 w-auto">
+                    </a>
+                    <p class="text-white/80 text-sm leading-relaxed">
+                        Smart Telegram bot for effortless group and channel management. From thousands of clicks to just a few.
+                    </p>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="text-center">
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <nav class="flex flex-col gap-3 sm:gap-2">
+                        <a href="index.html" class="text-white/80 hover:text-white transition-colors text-base sm:text-sm py-2 sm:py-0">Home</a>
+                        <a href="pricing.html" class="text-white/80 hover:text-white transition-colors text-base sm:text-sm py-2 sm:py-0">Pricing</a>
+                        <a href="contacts.html" class="text-white/80 hover:text-white transition-colors text-base sm:text-sm py-2 sm:py-0">Contacts</a>
+                        <a href="privacy.html" class="text-white/80 hover:text-white transition-colors text-base sm:text-sm py-2 sm:py-0">Privacy</a>
+                    </nav>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="text-center md:text-right">
+                    <a href="contacts.html#contact-form" class="inline-block">
+                        <h4 class="font-bold text-lg mb-4 text-white hover:text-white/90 transition-colors cursor-pointer">Get In Touch</h4>
+                    </a>
+                    <p class="text-white/80 text-sm leading-relaxed mb-4">
+                        Ready to streamline your Telegram management? We're here to help.
+                    </p>
+                    <a href="contacts.html#contact-form" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold py-3 sm:py-2 px-6 sm:px-5 text-base sm:text-sm rounded-full transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Contact Us
+                    </a>
+                </div>
+                
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="border-t border-white/20 pt-6">
+                <p class="text-white/60 text-sm text-center">
+                    &copy; 2025 SynAppUs Bot. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('main-header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+        });
+        
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
